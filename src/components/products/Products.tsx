@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import ProductThumb from '../productThumb/ProductThumb';
 
 import './Products.scss';
 
-export default function Products() {
+import useItemGet from '../dataFetch/fetchItems'
+import { getProducts } from '../../api/index';
+
+export default function Products(props: any) {
+  const {items: products} = useItemGet(getProducts, [props.limit]);
+  
+  const productList = 
+    products.map((item: any) =>
+      <ProductThumb {...item} key={item.id}/>
+    );
+
   return (
-    <p>products</p>
+    <div>
+      <div>{ productList }</div>
+    </div>
   );
 }
