@@ -20,6 +20,21 @@ async function getProduct(id: number | string) : Promise<IProduct> {
   return new Promise((resolve) => resolve(product))
 }
 
+async function getProducts(limit: number, offset: number) {
+  const path = `products${
+    limit
+      ? offset 
+        ? `?limit=${limit}&offset=${offset}` : `?limit=${limit}`
+      : offset
+        ? `?offset=${offset}` : ''
+  }`;
+  console.log(path);
+  const url = new URL(path, baseurl);
+  const result = await fetch(url.href);
+  return result.json();
+}
+
 export {
   getProduct,
+  getProducts,
 };
