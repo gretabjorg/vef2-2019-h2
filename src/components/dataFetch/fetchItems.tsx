@@ -11,8 +11,11 @@ export default function useItemGet(apiCall: Function, ...args:any[]) {
     limit: 0,
     offset: 0,
     items: [],
-    links: {
+    _links: {
       self: {
+        href: {}
+      },
+      prev: {
         href: {}
       },
       next: {
@@ -27,9 +30,7 @@ export default function useItemGet(apiCall: Function, ...args:any[]) {
       setData(result);
     }
     fetchData();
-  },[]);
-
-  console.log(data);
+  },[...args]);
 
   return data;
 }
