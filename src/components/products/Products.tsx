@@ -12,12 +12,18 @@ export default function Products(props: any) {
   
   const productList = 
     products.map((item: any) =>
-      <ProductThumb {...item} key={item.id}/>
+      <div className="products__col">
+        <ProductThumb {...item} key={item.id}/>
+      </div>
     );
 
   return (
-    <div>
-      <div>{ productList }</div>
-    </div>
+    <React.Fragment>
+      <div className="products">
+        <div className="products__row">
+          { productList }
+        </div>
+      </div>
+    </React.Fragment>
   );
 }

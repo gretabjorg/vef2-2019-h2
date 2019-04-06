@@ -1,0 +1,62 @@
+@import "../../config.scss";
+
+@import "../../config.scss";
+
+.thumbnail {
+  display: flex;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+
+  flex-direction: column;
+  justify-content: flex-start;
+
+  height: calc((100vw - 20px) * 0.5625);
+  border: 1px solid black; /*16:9 aspect ratio*/
+
+  &__image {
+    display: flex;
+    align-items: center;
+    img { /* stylelint-disable-line */
+      flex: 0.66625;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: stretch;
+    padding: $gutter / 2;
+  }
+
+  &__texts {
+    flex: 1;
+  }
+
+  &__finished {
+    font-size: 3rem;
+    color: #2d2;
+  }
+
+  &__category {
+    position: relative;
+    display: block;
+
+    font-family: $font-main;
+    font-size: 1rem;
+  }
+
+  &__title {
+    position: relative;
+    z-index: 1;
+    font-family: $font-heading;
+    font-size: 1.3rem;
+  }
+
+  &__price {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+  }
+}
