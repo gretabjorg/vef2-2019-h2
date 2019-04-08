@@ -5,11 +5,12 @@ import CategoryThumb from '../categoryThumb/CategoryThumb';
 import { getCategories } from '../../api/index';
 import listWrap from '../listWrapper/ListWrapper';
 
-export default function Categories() {
-  const List = listWrap(CategoryThumb, getCategories);
+export default function Categories(props: any) {
+  const { items } = props;
+  const List = listWrap(CategoryThumb, items);
   return (
     <React.Fragment>
-      <List values={[12, 0]}/>
+      <List/>
     </React.Fragment>
   );
 }

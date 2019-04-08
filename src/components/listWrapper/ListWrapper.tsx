@@ -2,12 +2,8 @@ import React from 'react';
 
 import './List.scss';
 
-import useItemGet from '../dataFetch/fetchItems'
+const listWrap = (WrappedComponent: any, items = []) => (props: any) => {
 
-const listWrap = (WrappedComponent: any, getter: Function) => (props: any) => {
-  const { items } = useItemGet(
-    getter, ...props.values
-    )
   const list = 
     items.map((item: any) =>
       <div className="list__col">

@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import Products from '../../components/products/Products';
-import Button from '../../components/button/Button';
-import Search from '../../components/search/Search';
+import Categories from '../../components/categories/Categories';
 
-export default function CategoriesRoute() {
-  const [ page, setPage ] = useState(0);
+import useGetter from '../../api/fetchItems';
+import { getCategories } from '../../api/index';
+
+export default function CategoryRoute(props: any) {
+  const initialState = {
+    limit: 0,
+    offset: 0,
+    items: [],
+    _links: {
+      self: {
+        href: {}
+      },
+      prev: {
+        href: {}
+      },
+      next: {
+        href: {}
+      }
+    }
+  };
+
+  const { items } = useGetter(
+    getCategories, initialState, 12, 0
+  );
+
   return (
     <div className="category">
-      <Search />
-      <Products limit={12} offset={page}/>
-      <div className="category__page">
-        { page ? <Button onClick={() => setPage(page - 12) } children={ "Fyrri síða" }/> : null }
-        <div>{`Síða ${page / 12 + 1}`}</div>
-        <Button onClick={() => setPage(page + 12) } children={ "Næsta síða" }/>
-      </div>
+      <h1>Skoðaðu vöruflokkana okkar</h1>
+      <Categories items={items}/>
     </div>
   );
 }

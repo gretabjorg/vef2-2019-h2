@@ -8,11 +8,11 @@ import { getProducts } from '../../api/index';
 import listWrap from '../listWrapper/ListWrapper';
 
 export default function Products(props: any) {
-  const { limit, offset } = props;
-  const List = listWrap(ProductThumb, getProducts);
+  const { items } = props;
+  const List = listWrap(ProductThumb, items);
   return (
     <React.Fragment>
-      <List values={[limit, offset]}/>
+      <List/>
     </React.Fragment>
   );
 }

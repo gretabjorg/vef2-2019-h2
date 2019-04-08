@@ -6,26 +6,8 @@ import React, { useState, useEffect } from 'react';
  * @param apiCall api kall sem á að framkvæma
  * @param args viðföng í api kall
  */
-export default function useItemGet(apiCall: Function, ...args:any[]) {
-  const [ data, setData ] = useState({
-    limit: 0,
-    offset: 0,
-    items: [],
-    _links: {
-      self: {
-        href: {}
-      },
-      prev: {
-        href: {}
-      },
-      next: {
-        href: {}
-      }
-    }
-  });
-
-  // console.log(...args);
-
+export default function useGetter(apiCall: Function, initialState: any, ...args:any[]) {
+  const [ data, setData ] = useState(initialState);
   useEffect(() => {
     const fetchData = async () => {
       const result = await apiCall(...args);
