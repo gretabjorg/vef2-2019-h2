@@ -4,28 +4,15 @@ import ProductThumb from '../productThumb/ProductThumb';
 
 import './Products.scss';
 
-import useItemGet from '../dataFetch/fetchItems'
 import { getProducts } from '../../api/index';
+import listWrap from '../listWrapper/ListWrapper';
 
 export default function Products(props: any) {
-  const {items: products} = useItemGet(
-    getProducts, props.limit, props.offset, props.category, props.search
-  );
-  
-  const productList = 
-    products.map((item: any) =>
-      <div className="products__col">
-        <ProductThumb {...item} key={item.id}/>
-      </div>
-    );
-  
+  const { limit, offset } = props;
+  const List = listWrap(ProductThumb, getProducts);
   return (
     <React.Fragment>
-      <div className="products">
-        <div className="products__row">
-          { productList }
-        </div>
-      </div>
+      <List values={[limit, offset]}/>
     </React.Fragment>
   );
 }
