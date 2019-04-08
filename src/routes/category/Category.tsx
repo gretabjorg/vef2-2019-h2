@@ -13,7 +13,7 @@ import './Category.scss';
 export default function CategoryRoute(props: any) {
   const [ page, setPage ] = useState(0);
   const [ search, setSearch ] = useState('');
-
+  const [ query, submitSearch ] = useState(search);
   const initialState = {
     limit: 0,
     offset: 0,
@@ -32,12 +32,16 @@ export default function CategoryRoute(props: any) {
   };
 
   const { items } = useGetter(
-    getProducts, initialState, 12, page
+    getProducts, initialState, 12, page, null, query
   );
+
+  function handleSearch() {
+    submitSearch(search);
+  }
 
   return (
     <div className="category">
-      <Search />
+      <Search searchString={search} setSearch={setSearch} submitSearch={handleSearch} />
       <Products items={items}/>
       <div className="category__page">
         { page ? <Button onClick={() => setPage(page - 12) } children={ "Fyrri síða" } /> : null }

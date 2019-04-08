@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-export default function Search() {
+import Input from '../input/Input';
+import Button from '../button/Button';
+
+export default function Search(props: any) {
+  const { searchString, setSearch, submitSearch } = props;
+
   return (
-    <p>search</p>
+    <Fragment>
+      <label>{'Leita'}</label>
+      <Input value={searchString} setValue={setSearch}/>
+      <Button onClick={ submitSearch }small={true} children={'Leita'}/>
+    </Fragment>
   );
 }
