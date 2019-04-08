@@ -16,13 +16,15 @@ export default function Home() {
         <Helmet title="Forsíða" />
         <h1 className="fp__heading">Nýjar vörur</h1>
         <Products limit={6} offset={0}/>
-        <Link
-          to={{
-            pathname: '/categories'
-          }}
-          >
-            <Button children={'Skoða alla flokka'} />
-          </Link>
+        <div className="fp__allcats">
+          <Link
+            to={{
+              pathname: '/categories'
+            }}
+            >
+              <Button children={'Skoða alla flokka'} />
+            </Link>
+        </div>
         <h2 className="fp__heading">Skoðaðu vöruflokkana okkar</h2>
         <Categories />
       </div>

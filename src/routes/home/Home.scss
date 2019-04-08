@@ -7,6 +7,9 @@
     font-family: $font-heading;
   }
   
+  &__allcats {
+    margin: $gutter 0;
+  }
   @media (max-width: $max-width - 1) {
     padding-right: $gutter;
     padding-left: $gutter;
