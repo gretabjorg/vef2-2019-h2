@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom';
 
 import './ProductThumb.scss';
 
-export default function Product(props: any) {
-  const { title, category_title, price, image } = props;
+interface IProductThumProps {
+  category_title: string;
+  id: number;
+  image?: string;
+  price: number;
+  title: string;
+}
+
+export default function Product(props: IProductThumProps) {
+  const { title, category_title, price, image, id } = props;
   return (
     <Link 
     to={{
-      pathname: "/"
+      pathname: `/products/${id}`
     }}
     className="thumbnail"
     >
@@ -25,12 +33,5 @@ export default function Product(props: any) {
       </div>
     </div>
   </Link>
-
-    // <div className="thumbnail">
-    
-    //   <img className="thumbnail__image" src={ props.image } />
-    //   <p>{ props.title }</p>
-    //   <p>{ props.price }</p>
-    // </div>
   );
 }

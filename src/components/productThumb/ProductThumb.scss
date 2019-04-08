@@ -1,7 +1,5 @@
 @import "../../config.scss";
 
-@import "../../config.scss";
-
 .thumbnail {
   display: flex;
   height: 100%;
@@ -11,9 +9,7 @@
   flex-direction: column;
   justify-content: flex-start;
 
-  height: calc((100vw - 20px) * 0.5625);
-  border: 1px solid black; /*16:9 aspect ratio*/
-
+  margin-bottom: $gutter;
   &__image {
     display: flex;
     align-items: center;
