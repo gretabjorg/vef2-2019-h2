@@ -24,6 +24,8 @@ export default function useItemGet(apiCall: Function, ...args:any[]) {
     }
   });
 
+  // console.log(...args);
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await apiCall(...args);

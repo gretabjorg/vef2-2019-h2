@@ -3,6 +3,13 @@
 .header {
   background-color: $color-font;
   padding: $gutter;
+  margin-bottom: $gutter;
+
+  @media (max-width: $max-width - 1) {
+    padding-right: $gutter;
+    padding-left: $gutter;
+  }
+
   &__content {
     display: flex;
     justify-content: space-between;
