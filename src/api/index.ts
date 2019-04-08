@@ -35,15 +35,7 @@ async function getProduct(id: number | string) : Promise<IProduct> {
 async function getProducts(
   limit: Number, offset: Number, category: Number, search: String
 ) {
-  const page = `${
-    limit
-    ? offset 
-      ? `?limit=${limit}&offset=${offset}`
-      : `?limit=${limit}`
-    : offset
-      ? `?offset=${offset}`
-      : ''
-  }`;
+  const page = getPage(limit, offset);
   const isPage = `${page ? '&' : '?'}`
   const query = `${
     search 
