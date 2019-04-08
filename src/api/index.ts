@@ -15,21 +15,12 @@ function getPage(limit: Number, offset: Number) {
   }`;
 }
 
-async function getProduct(id: number | string) : Promise<IProduct> {
-  // todo sækja vöru
+async function getProduct(id: number | string) {
+  const path = `products/${id}`;
 
-  const product: IProduct = {
-    category: {
-      id: 10,
-      title: "Flokkur",
-    },
-    id: 1,
-    image: '',
-    price: 100,
-    title: "Prufuvara",
-  };
-
-  return new Promise((resolve) => resolve(product))
+  const url = new URL(path, baseurl);
+  const result = await fetch(url.href);
+  return result.json();
 }
 
 async function getProducts(
