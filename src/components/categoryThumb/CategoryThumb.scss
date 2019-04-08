@@ -1,0 +1,16 @@
+@import "../../config.scss";
+
+.category_thumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $color-font;
+  text-decoration: none;
+  color: $color-font;
+  &__title {
+    padding: $gutter;
+    margin: $gutter;
+    font-family: $font-main;
+    font-weight: lighter;
+  }
+}

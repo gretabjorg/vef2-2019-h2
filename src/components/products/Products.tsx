@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import ProductThumb from '../productThumb/ProductThumb';
 
@@ -8,7 +8,9 @@ import useItemGet from '../dataFetch/fetchItems'
 import { getProducts } from '../../api/index';
 
 export default function Products(props: any) {
-  const {items: products} = useItemGet(getProducts, [props.limit]);
+  const {items: products} = useItemGet(
+    getProducts, props.limit, props.offset, props.category, props.search
+  );
   
   const productList = 
     products.map((item: any) =>
@@ -16,7 +18,7 @@ export default function Products(props: any) {
         <ProductThumb {...item} key={item.id}/>
       </div>
     );
-
+  
   return (
     <React.Fragment>
       <div className="products">
