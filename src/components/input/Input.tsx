@@ -3,7 +3,6 @@ import React from 'react';
 import './Input.scss';
 
 export default function Input(props: any) {
-  // const [ value, setValue ] = useState('');
   const { value, setValue, pressedEnter={} } = props;
   return (
     <input 

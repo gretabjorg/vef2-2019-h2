@@ -3,7 +3,6 @@ import React from 'react';
 import './List.scss';
 
 const listWrap = (WrappedComponent: any, items = []) => (props: any) => {
-
   const list = 
     items.map((item: any) =>
       <div className="list__col">

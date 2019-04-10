@@ -16,7 +16,7 @@ export default function Product(props: IProductThumProps) {
   return (
     <Link 
     to={{
-      pathname: `/products/${id}`
+      pathname: `/product/${id}`
     }}
     className="thumbnail"
     >
