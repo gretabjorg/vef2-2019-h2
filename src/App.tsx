@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
+import { User } from './context/currentUser';
+
 import Header from './components/header/Header';
 
 import Home from './routes/home/Home';
@@ -30,22 +32,22 @@ function App(props: Props) {
       <Header />
 
       <div className="app">
-
-        <main className="main__content">
-          <Switch location={props.location}>
-            <Route path="/" exact component={Home} />
-            <Route path="/register" exact component={Register} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/categories/" exact component={Categories} />
-            <Route path="/categories/:id" exact component={Category} />
-            <Route path="/product/:id" exact component={Product} />
-            <Route path="/cart" exact component={Cart} />
-            <Route path="/orders" exact component={Orders} />
-            <Route path="/orders/:id" exact component={Order} />
-            <Route component={NotFound} />
-          </Switch>
-        </main>
-
+        <User>
+          <main className="main__content">
+            <Switch location={props.location}>
+              <Route path="/" exact component={Home} />
+              <Route path="/register" exact component={Register} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/categories/" exact component={Categories} />
+              <Route path="/categories/:id" exact component={Category} />
+              <Route path="/product/:id" exact component={Product} />
+              <Route path="/cart" exact component={Cart} />
+              <Route path="/orders" exact component={Orders} />
+              <Route path="/orders/:id" exact component={Order} />
+              <Route component={NotFound} />
+            </Switch>
+          </main>
+        </User>
       </div>
     </React.Fragment>
   );

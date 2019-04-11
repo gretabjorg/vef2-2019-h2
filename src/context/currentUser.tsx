@@ -1,41 +1,46 @@
 import React, { createContext, useState } from 'react';
-import { postUser } from '../api/index';
+import { postLogin } from '../api/index';
 
-const user = JSON.parse(localStorage.getItem('user') || 'null');
+//const user = null;
 
 const CurrentUser = createContext({
   fetching: false,
-  authenticated: !!user,
-  user,
-  message: '',
+  authenticated: false,
+  user: null,
+  validation: [],
+  error: '',
+  token: '',
   loginUser: (username: String, password: String) => {},
   logoutUser: () => {},
 });
 
 function User(props: any) {
   const [ fetching, setFetching ] = useState(false);
-  const [ authenticated, setAuth ] = useState(!!user);
-  const [ message, setMessage ] = useState('');
-  const [ currentUser, setUser ] = useState(user);
+  const [ authenticated, setAuth ] = useState(false);
+  const [ validation, setValidation ] = useState([]);
+  const [ error, setError ] = useState('');
+  const [ currentUser, setUser ] = useState(null);
+  const [ token, setToken ] = useState('');
 
   const loginUser = async (username: String, password: String) => {
     setFetching(true);
     let login: any;
     try {
-      login = await postUser(username, password);
-      setMessage(login);
+      login = await postLogin(username, password);
     } catch (e) {
-      setMessage(e.message);
+      console.error(e.message);
     }
-
-    if (login.error) {
+    if (typeof login.length === 'number' && login.lengt > 0) {
+      setValidation(login);
       setFetching(false);
     }
 
-    if (login.user) {
-      console.log('logged in');
-      const { user } = login;
-      localStorage.setItem('user', JSON.stringify(user));
+    if (login.error) {
+      setError(login.error);
+    }
+    if (login.token) {
+      const { user, token } = login;
+      setToken(token);
       setUser(user);
       setAuth(true);
       setFetching(false);
@@ -43,20 +48,25 @@ function User(props: any) {
   };
 
   const logoutUser = async () => {
-    localStorage.removeItem('user');
     setUser(null);
+    setToken('');
+  };
+
+  const state = {
+    fetching,
+    authenticated,
+    user: currentUser,
+    validation,
+    error,
+    currentUser,
+    token,
+    loginUser,
+    logoutUser,
   };
 
   return (
     <CurrentUser.Provider
-      value={{
-        fetching,
-        authenticated,
-        user: currentUser,
-        message: message,
-        loginUser: loginUser,
-        logoutUser: logoutUser
-      }}
+      value={{...state}}
     >
       {props.children}
     </CurrentUser.Provider>
