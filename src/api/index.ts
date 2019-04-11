@@ -58,8 +58,30 @@ async function getCategories(
   return result.json();
 }
 
+async function postUser(username: String, password: String) {
+  const path = 'users/login';
+  const url = new URL(path, baseurl);
+
+  const user = {
+    username,
+    password
+  }
+
+  const result = await fetch(url.href, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': "application/json",
+    },
+    body:JSON.stringify(user),
+  });
+
+  return result.json();
+}
+
 export {
   getProduct,
   getProducts,
   getCategories,
+  postUser,
 };

@@ -24,6 +24,9 @@
     }
   }
 
+  &__nav {
+    min-width: 15%;
+  }
   &__link {
     padding: $gutter/3;
     color: $color-background;
