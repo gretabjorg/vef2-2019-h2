@@ -58,7 +58,7 @@ async function getCategories(
   return result.json();
 }
 
-async function postUser(username: String, password: String) {
+async function postLogin(username: String, password: String) {
   const path = 'users/login';
   const url = new URL(path, baseurl);
 
@@ -79,9 +79,21 @@ async function postUser(username: String, password: String) {
   return result.json();
 }
 
+async function getCart(token: String, id: Number | undefined) {
+  const path = typeof id === 'undefined' ? 'cart' : `cart/line/${id}`;
+  const url = new URL(path, baseurl);
+  const result = await fetch(url.href, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return result.json();  
+}
+
 export {
   getProduct,
   getProducts,
   getCategories,
-  postUser,
+  getCart,
+  postLogin,
 };
