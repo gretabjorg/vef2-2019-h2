@@ -6,7 +6,12 @@ import { postLogin } from '../api/index';
 const CurrentUser = createContext({
   fetching: false,
   authenticated: false,
-  user: null,
+  user: {
+    id: 0,
+    username: '',
+    email: '',
+    admin: false
+  },
   validation: [],
   error: '',
   token: '',
@@ -19,7 +24,12 @@ function User(props: any) {
   const [ authenticated, setAuth ] = useState(false);
   const [ validation, setValidation ] = useState([]);
   const [ error, setError ] = useState('');
-  const [ currentUser, setUser ] = useState(null);
+  const [ currentUser, setUser ] = useState({
+    id: 0,
+    username: '',
+    email: '',
+    admin: false
+  });
   const [ token, setToken ] = useState('');
 
   const loginUser = async (username: String, password: String) => {
@@ -48,8 +58,14 @@ function User(props: any) {
   };
 
   const logoutUser = async () => {
-    setUser(null);
+    setUser({
+      id: 0,
+      username: '',
+      email: '',
+      admin: false
+    });
     setToken('');
+    setAuth(false);
   };
 
   const state = {
@@ -58,7 +74,6 @@ function User(props: any) {
     user: currentUser,
     validation,
     error,
-    currentUser,
     token,
     loginUser,
     logoutUser,
