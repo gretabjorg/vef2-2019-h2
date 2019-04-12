@@ -29,10 +29,10 @@ function App(props: Props) {
     <React.Fragment>
       <Helmet defaultTitle="Vefforritunarbúðin" titleTemplate="%s – Vefforritunarbúðin" />
 
+      <User>
       <Header />
 
-      <div className="app">
-        <User>
+        <div className="app">
           <main className="main__content">
             <Switch location={props.location}>
               <Route path="/" exact component={Home} />
@@ -47,8 +47,8 @@ function App(props: Props) {
               <Route component={NotFound} />
             </Switch>
           </main>
-        </User>
-      </div>
+        </div>
+      </User>
     </React.Fragment>
   );
 }
