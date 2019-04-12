@@ -1,5 +1,29 @@
 # Hópverkefni 2
 
+# TODO:
+## CSS
+> Desktop
+> - Login
+> - Cart
+
+> Mobile
+> - Header
+> - Home
+> - Login
+> - Cart
+> - eiginlega bara allt...
+
+## Síður
+- orders (pantanir)
+- products (nýjar vörur)
+- nýskrá?
+- ( stjórnendadót )
+
+## Annað
+- Authentication í local storage
+- ReadMe og documentation
+- Búa til týpur
+
 Útfæra skal framenda ofan á vefþjónustur úr hópverkefni 1.
 
 ## Virkni
