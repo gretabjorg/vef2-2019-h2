@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 
 import './Cart.scss';
 import useGetter from '../../api/fetchItems';
@@ -9,6 +10,32 @@ import OrderCart from '../../components/orderCart/OrderCart';
 
 import { updateCartLine, deleteCartLine } from '../../api/index';
 
+// TODO:
+//  Finna leið til þess að rendera ekki fyrr en það er búið að tékka á körfu
+//  Skoða hvort það sé betri leið til að redirecta
+
+function CartPage(props: any) {
+  const { lines, updateItem, deleteItem, total } = props;
+  return (
+    <Fragment>
+      {
+        lines.length !== 0
+          ? (
+            <Fragment>
+              <CartList updateItem={updateItem} deleteItem={deleteItem} cart={ lines } total={ total }/>
+              <OrderCart />
+            </Fragment>
+          )
+          : (
+            <Fragment>
+              <h1>Karfan er tóm</h1>
+              <Link to="/products">Má bjóða þér að versla?</Link>
+            </Fragment>
+          )
+      }
+    </Fragment>
+  );
+} 
 
 export default function Cart() {
   const { token, authenticated } = useContext(CurrentUser);
@@ -25,9 +52,6 @@ export default function Cart() {
   
 
   return (
-    <Fragment>
-      <CartList updateItem={updateItem} deleteItem={deleteItem} cart={ lines } total={ total }/>
-      <OrderCart />
-    </Fragment>
+    <CartPage lines={lines} updateItem={updateItem} deleteItem={deleteItem} total={total} />
   );
 }
