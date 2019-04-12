@@ -79,9 +79,8 @@ async function postLogin(username: String, password: String) {
   return result.json();
 }
 
-async function getCart(token: String, id: Number | undefined) {
-  const path = typeof id === 'undefined' ? 'cart' : `cart/line/${id}`;
-  const url = new URL(path, baseurl);
+async function getCart(token: String) {
+  const url = new URL('cart', baseurl);
   const result = await fetch(url.href, {
     headers: {
       'Authorization': `Bearer ${token}`
@@ -90,10 +89,52 @@ async function getCart(token: String, id: Number | undefined) {
   return result.json();  
 }
 
+async function getCartLine(token: String, id: Number | undefined) {
+  const url = new URL(`cart/line/${id}`, baseurl);
+  const result = await fetch(url.href, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return result.json();  
+}
+
+async function updateCartLine(token: String, id: Number, quantity: Number) {
+  const path = `cart/line/${id}`;
+  const url = new URL(path, baseurl);
+
+  const result = await fetch(url.href, {
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify({
+      "quantity":parseInt(String(quantity))
+    })
+  });
+  const json = await result.json();
+  return json;
+}
+
+async function deleteCartLine(token: String, id: Number) {
+  const path = `cart/line/${id}`;
+  const url = new URL(path, baseurl);
+  await fetch(url.href, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+}
+
 export {
   getProduct,
   getProducts,
   getCategories,
+  getCartLine,
   getCart,
   postLogin,
+  updateCartLine,
+  deleteCartLine
 };

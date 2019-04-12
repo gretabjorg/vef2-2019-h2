@@ -6,8 +6,15 @@ import Button from '../button/Button';
 import './CartItem.scss';
 
 export default function CartItem(props: any) {
-  const { image, price, quantity: initalQuantity, title } = props;
+  const { image, price, quantity: initalQuantity, title, id } = props;
+  const { updateItem, deleteItem } = props;
   const [ quantity, setQuantity ] = useState(initalQuantity);
+
+  const doUpdate = async () =>
+    updateItem(id, quantity);
+  
+  const doDelete = async () =>
+    deleteItem(id);
 
   const total = price*quantity;
   return (
@@ -18,6 +25,7 @@ export default function CartItem(props: any) {
         </div>
         <div className="cart__item__info__text">
           <h2>{ title }</h2>
+          <p>{ id }</p>
           <p>{ `Verð: ${price} kr.-` }</p>
         </div>
       </div>
@@ -25,10 +33,10 @@ export default function CartItem(props: any) {
         <div className="cart__item__options__quantity">
           <label>{'Fjöldi: '}</label>
           <Input value={ quantity } setValue={ setQuantity }/>
-          <Button children="Uppfæra" small={true}/>
+          <Button onClick={doUpdate} children="Uppfæra" small={true}/>
         </div>
         <strong>{ `Samtals: ${ total } kr.-` }</strong>
-        <Button children="Eyða" small={true}/>
+        <Button onClick={doDelete} children="Eyða" small={true}/>
       </div>
     </div>
   )
