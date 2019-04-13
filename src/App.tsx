@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import Helmet from 'react-helmet';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 
-import { User } from './context/currentUser';
+import { User, CurrentUser } from './context/currentUser';
 
 import Header from './components/header/Header';
 
@@ -25,14 +25,14 @@ type Props = {
 };
 
 function App(props: Props) {
+  const { authenticated } = useContext(CurrentUser);
   return (
     <React.Fragment>
       <Helmet defaultTitle="Vefforritunarbúðin" titleTemplate="%s – Vefforritunarbúðin" />
 
       <Header />
 
-      <div className="app">
-        <User>
+        <div className="app">
           <main className="main__content">
             <Switch location={props.location}>
               <Route path="/" exact component={Home} />
@@ -41,14 +41,17 @@ function App(props: Props) {
               <Route path="/categories/" exact component={Categories} />
               <Route path="/categories/:id" exact component={Category} />
               <Route path="/product/:id" exact component={Product} />
-              <Route path="/cart" exact component={Cart} />
+              {
+                authenticated
+                ? <Route path="/cart" exact component={Cart} />
+                : <Redirect to="/login" />
+              }
               <Route path="/orders" exact component={Orders} />
               <Route path="/orders/:id" exact component={Order} />
               <Route component={NotFound} />
             </Switch>
           </main>
-        </User>
-      </div>
+        </div>
     </React.Fragment>
   );
 }
