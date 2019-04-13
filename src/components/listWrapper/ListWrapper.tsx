@@ -14,8 +14,8 @@ import './List.scss';
 const listWrap = (WrappedComponent: any, items = []) => (props: any) => {
   const list = 
     items.map((item: any) =>
-      <div className="list__col">
-        <WrappedComponent {...item} key={item.id}/>
+      <div key={item.id} className="list__col">
+        <WrappedComponent {...item}/>
       </div>
     );
   return (

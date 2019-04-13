@@ -4,55 +4,57 @@ import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
 import { CurrentUser, User } from '../../context/currentUser';
-// import User, { Context } from '../../context/testCurrentUser';
 
 import './Login.scss';
 
 function LoggedIn(props: any) {
-  const { user, message } = useContext(CurrentUser);
-  // const { user, message } = useContext(Context);
-
-
+  const { user } = props;
   return (
-    <p>{"whatever"}</p>
+    <p>{
+      `Velkominn ${user.username}`
+    }</p>
   )
 }
 
 function LoginForm(props: any) {
-  const { message, login } = props;
-  // const { loginUser } = useContext(CurrentUser);
-  // const { loginUser, logoutUser, authenticated, message} = useContext(CurrentUser);
-  console.log(message);
-  //const { login, error } = props;
+  const { validation = [], error = '', login } = props;
   const [ user, setUser ] = useState('');
   const [ password, setPassword ] = useState('');
   const doLogin = () => {
     login(user, password);
-  }
+  };
+
+  const validationList = validation.map((validation: any) => (
+    <div>
+      <p>{validation.field}</p>
+      <p>{validation.error}</p>
+    </div>
+  ));
 
   return (
     <Fragment>
       <h1>Innskráning</h1>
+      {error}
+      {validationList}
       <label>Notandanafn</label>
       <Input value={user} setValue={setUser}/>
       <label>Lykilorð</label>
       <Input value={password} setValue={setPassword}/>
       <Button onClick={doLogin} children={'Skrá inn'}/>
-      {/* <p>{message}</p> */}
     </Fragment>
   );
 }
 
 function LoginContent() {
-  // const { user, authenticated, message, loginUser } = useContext(Context);
-  const { user, loginUser, logoutUser, authenticated, message} = useContext(CurrentUser);
+  const {
+    user, loginUser, logoutUser, authenticated, validation, error
+  } = useContext(CurrentUser);;
   return (
     <Fragment>
         { 
           authenticated
-          ? <LoggedIn user={user}/>
-          // : <LoginForm />//login={loginUser} error={message}/>
-          : <LoginForm message={message} login={loginUser}/>
+          ? <LoggedIn user={user} logout={logoutUser} />
+          : <LoginForm validation={validation} error={error} login={loginUser}/>
         }
     </Fragment>
   );
@@ -61,8 +63,6 @@ function LoginContent() {
 export default function Login() {
   // loginUser('gunnar', 'agoodpasswordman');
   return (
-    <User>
-      <LoginContent />
-    </User>
+    <LoginContent />
   );
 };
