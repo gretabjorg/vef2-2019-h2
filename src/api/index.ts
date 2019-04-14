@@ -79,6 +79,28 @@ async function postLogin(username: String, password: String) {
   return result.json();
 }
 
+async function postRegister(username: String, password: String, email: String) {
+  const path = 'users/register';
+  const url = new URL(path, baseurl);
+
+  const user = {
+    username,
+    password,
+    email
+  }
+
+  const result = await fetch(url.href, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': "application/json",
+    },
+    body:JSON.stringify(user),
+  });
+
+  return result.json();
+}
+
 async function getCart(token: String) {
   const url = new URL('cart', baseurl);
   const result = await fetch(url.href, {
@@ -155,6 +177,7 @@ export {
   getProduct,
   getProducts,
   getCategories,
+  postRegister,
   getCartLine,
   getCart,
   postLogin,
