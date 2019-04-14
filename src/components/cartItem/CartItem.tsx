@@ -10,8 +10,13 @@ export default function CartItem(props: any) {
   const { updateItem, deleteItem } = props;
   const [ quantity, setQuantity ] = useState(initalQuantity);
 
-  const doUpdate = async () =>
-    updateItem(id, quantity);
+  const doUpdate = async () => {
+    if (quantity > 0) {
+      updateItem(id, quantity);
+    } else {
+      deleteItem(id);
+    }
+  }
   
   const doDelete = async () =>
     deleteItem(id);

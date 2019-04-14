@@ -1,14 +1,13 @@
 @import '../../config.scss';
 
 .fp {
-  margin: $gutter;
-
   &__heading {
     font-family: $font-heading;
+    margin-bottom: $gutter/2;
   }
   
   &__allcats {
-    margin: $gutter 0;
+    margin-bottom: $gutter;
   }
   @media (max-width: $max-width - 1) {
     padding-right: $gutter;

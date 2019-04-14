@@ -150,6 +150,29 @@ async function deleteCartLine(token: String, id: Number) {
   });
 }
 
+async function orderCart(token: String, name: String, address: String) {
+  const path = 'orders';
+  const url = new URL(path, baseurl);
+  const shipping = { name, address };
+  console.log(JSON.stringify({
+    "name":name,
+    "address":address
+  }));
+  const result = await fetch(url.href, {
+    method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': "application/json"
+      },
+    body: JSON.stringify({
+      "name":name,
+      "address":address
+    })
+  });
+
+  return result.json();
+}
+
 export {
   getProduct,
   getProducts,
@@ -159,5 +182,6 @@ export {
   getCart,
   postLogin,
   updateCartLine,
-  deleteCartLine
+  deleteCartLine,
+  orderCart,
 };
