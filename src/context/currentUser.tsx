@@ -1,17 +1,12 @@
 import React, { createContext, useState } from 'react';
 import { postLogin } from '../api/index';
 
-//const user = null;
+const noUser = { id: 0, username: '', email: '', admin: false }
 
 const CurrentUser = createContext({
   fetching: false,
   authenticated: false,
-  user: {
-    id: 0,
-    username: '',
-    email: '',
-    admin: false
-  },
+  user: noUser,
   validation: [],
   error: '',
   token: '',
@@ -20,18 +15,19 @@ const CurrentUser = createContext({
 });
 
 function User(props: any) {
+  const userFromLocal = JSON.parse(localStorage.getItem('user') || 'null');
+  const tokenFromLocal = JSON.parse(localStorage.getItem('token') || 'null');
+  
+  const user = userFromLocal ? userFromLocal : noUser;
+  const token = tokenFromLocal ? tokenFromLocal : '';
+  
   const [ fetching, setFetching ] = useState(false);
-  const [ authenticated, setAuth ] = useState(false);
+  const [ authenticated, setAuth ] = useState(!!token);
   const [ validation, setValidation ] = useState([]);
   const [ error, setError ] = useState('');
-  const [ currentUser, setUser ] = useState({
-    id: 0,
-    username: '',
-    email: '',
-    admin: false
-  });
-  const [ token, setToken ] = useState('');
-
+  const [ currentUser, setUser ] = useState(user);
+  const [ currentToken, setToken ] = useState(token);
+  
   const loginUser = async (username: String, password: String) => {
     setFetching(true);
     let login: any;
@@ -40,7 +36,7 @@ function User(props: any) {
     } catch (e) {
       console.error(e.message);
     }
-    if (typeof login.length === 'number' && login.lengt > 0) {
+    if (typeof login.length !== 'undefined' && login.lengt > 0) {
       setValidation(login);
       setFetching(false);
     }
@@ -48,22 +44,27 @@ function User(props: any) {
     if (login.error) {
       setError(login.error);
     }
+    
     if (login.token) {
       const { user, token } = login;
       setToken(token);
+      localStorage.setItem('token', JSON.stringify(token));
       setUser(user);
+      localStorage.setItem('user', JSON.stringify(user));
       setAuth(true);
       setFetching(false);
     }
   };
 
   const logoutUser = async () => {
+    localStorage.removeItem('user');
     setUser({
       id: 0,
       username: '',
       email: '',
       admin: false
     });
+    localStorage.removeItem('token');
     setToken('');
     setAuth(false);
   };
@@ -74,7 +75,7 @@ function User(props: any) {
     user: currentUser,
     validation,
     error,
-    token,
+    token: currentToken,
     loginUser,
     logoutUser,
   };
