@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-import './Register.scss';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 import { postRegister } from '../../api';
 import { async } from 'q';
+
+import './Register.scss';
 
 export default function Register(props: any) {
   const [loading, setLoading] = useState(false);
@@ -37,24 +38,32 @@ export default function Register(props: any) {
 
   return (
     <Fragment>
-      <div>
+      <div className={"register_col"}>
         <h1>Nýskráning</h1>
         {
           validation.length === 0
             ? ''
-            : <ul>{validationList}</ul>
+            : <ul className={"register__ul"}>{validationList}</ul>
         }
-        <label>Notendanafn:</label>
+      </div>
+      <div className={"register__col"}>
+        <label className={"register__label"}>Notendanafn:</label>
         <Input value={username} setValue={setUsername}/>
-        <label>Lykilorð:</label>
+      </div>
+      <div className={"register__col"}>
+        <label className={"register__label"}>Lykilorð:</label>
         <Input value={password} setValue={setPassword}/>
-        <label>Netfang:</label>
+      </div>
+      <div className={"register__col"}>
+        <label className={"register__label"}>Netfang:</label>
         <Input value={email} setValue={setEmail}/>
-        {loading && (
-          <p>Loading..</p>
-        )}
-        <Button onClick={doRegister} children={'Nýskráning'}/>
-        <Link to="/login">Innskráning</Link>
+      </div>
+      {loading && (
+        <p>Loading..</p>
+      )}
+      <Button onClick={doRegister} children={'Nýskráning'}/>
+      <div className={"register__col"}>
+        <Link className={"register__link"} to="/login">Innskráning</Link>
       </div>
     </Fragment>
   )
