@@ -89,7 +89,7 @@ async function getCart(token: String) {
   return result.json();  
 }
 
-async function getCartLine(token: String, id: Number | undefined) {
+async function getCartLine(token: String, id: Number) {
   const url = new URL(`cart/line/${id}`, baseurl);
   const result = await fetch(url.href, {
     headers: {
