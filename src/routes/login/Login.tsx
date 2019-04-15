@@ -3,7 +3,7 @@ import React, { Fragment, useState, useContext } from 'react';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
-import { CurrentUser, User } from '../../context/currentUser';
+import { CurrentUser } from '../../context/currentUser';
 
 import './Login.scss';
 

@@ -1,18 +1,20 @@
 import React, { createContext, useState } from 'react';
 import { postLogin } from '../api/index';
+import { IUser, ICurrentUser } from '../api/types';
 
-const noUser = { id: 0, username: '', email: '', admin: false }
+const noUser: IUser = { id: 0, username: '', email: '', admin: false }
 
-const CurrentUser = createContext({
-  fetching: false,
+const initialUser: ICurrentUser = {
   authenticated: false,
   user: noUser,
   validation: [],
   error: '',
   token: '',
-  loginUser: (username: String, password: String) => {},
+  loginUser: (username: string, password: string) => {},
   logoutUser: () => {},
-});
+}
+
+const CurrentUser = createContext(initialUser);
 
 function User(props: any) {
   const userFromLocal = JSON.parse(localStorage.getItem('user') || 'null');
@@ -21,26 +23,25 @@ function User(props: any) {
   const user = userFromLocal ? userFromLocal : noUser;
   const token = tokenFromLocal ? tokenFromLocal : '';
   
-  const [ fetching, setFetching ] = useState(false);
   const [ authenticated, setAuth ] = useState(!!token);
   const [ validation, setValidation ] = useState([]);
   const [ error, setError ] = useState('');
   const [ currentUser, setUser ] = useState(user);
   const [ currentToken, setToken ] = useState(token);
-  
-  const loginUser = async (username: String, password: String) => {
-    setFetching(true);
+
+  const loginUser = async (username: string, password: string) => {
     let login: any;
     try {
       login = await postLogin(username, password);
     } catch (e) {
       console.error(e.message);
     }
-    if (typeof login.length !== 'undefined' && login.lengt > 0) {
-      setValidation(login);
-      setFetching(false);
-    }
 
+    if (login.length > 0) {
+      setValidation(login);
+
+    }
+    
     if (login.error) {
       setError(login.error);
     }
@@ -52,7 +53,7 @@ function User(props: any) {
       setUser(user);
       localStorage.setItem('user', JSON.stringify(user));
       setAuth(true);
-      setFetching(false);
+
     }
   };
 
@@ -70,7 +71,6 @@ function User(props: any) {
   };
 
   const state = {
-    fetching,
     authenticated,
     user: currentUser,
     validation,

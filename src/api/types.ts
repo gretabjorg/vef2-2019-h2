@@ -1,3 +1,5 @@
+import { string, number,  } from "prop-types";
+
 export interface ICategory {
   id: number;
   title: string;
@@ -14,4 +16,19 @@ export interface IProduct {
   updated?: Date;
 }
 
-// todo fleiri týpur
+export interface IUser {
+  id: number;
+  username: string;
+  email: string;
+  admin: boolean;
+}
+
+export interface ICurrentUser {
+  authenticated: boolean;
+  user: IUser;
+  validation: any[];
+  error: string;
+  token: string;
+  loginUser: Function;
+  logoutUser: Function;
+}
