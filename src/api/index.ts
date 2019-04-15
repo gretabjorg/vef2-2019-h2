@@ -131,14 +131,10 @@ async function deleteCartLine(token: String, id: Number) {
 async function orderCart(token: String, name: String, address: String) {
   const path = 'orders';
   const url = new URL(path, baseurl);
-  const shipping = { name, address };
-  console.log(JSON.stringify({
-    "name":name,
-    "address":address
-  }));
+
   const result = await fetch(url.href, {
     method: 'POST',
-      headers: {
+    headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': "application/json"
       },
@@ -146,6 +142,32 @@ async function orderCart(token: String, name: String, address: String) {
       "name":name,
       "address":address
     })
+  });
+
+  return result.json();
+}
+
+async function getOrders(token: String) {
+  const path = 'orders';
+  const url = new URL(path, baseurl);
+  const result = await fetch(url.href, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  return result.json();
+}
+
+async function getOrder(token: String, id: Number) {
+  const path = `order/${id}`;
+  const url = new URL(path, baseurl);
+  const result = await fetch(url.href, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
   });
 
   return result.json();
@@ -161,4 +183,6 @@ export {
   updateCartLine,
   deleteCartLine,
   orderCart,
+  getOrders,
+  getOrder,
 };
