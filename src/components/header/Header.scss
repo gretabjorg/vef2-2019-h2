@@ -10,10 +10,21 @@
     padding-left: $gutter;
   }
 
+  @media (max-width: 800px) {
+    &__content {
+      flex-direction: column;     
+    }
+
+    &__nav__links {
+      justify-content: center;
+      padding: $gutter/3;
+    }
+  }
+
   &__content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
   }
 
   &__title {
@@ -27,7 +38,7 @@
   &__nav {
     min-width: 15%;
   }
-  &__link {
+  &__link { 
     padding: $gutter/3;
     color: $color-background;
     text-decoration: none;

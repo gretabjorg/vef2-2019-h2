@@ -40,16 +40,16 @@ export default function Home() {
                       <NavLink
                         className="header__link"
                         activeClassName="header__link header__link--selected"
-                        exact to="/login"
+                        exact to="/register"
                       >
-                        Innskrá
+                        Nýskrá
                       </NavLink>
                       <NavLink
                         className="header__link"
                         activeClassName="header__link header__link--selected"
-                        exact to="/register"
+                        exact to="/login"
                       >
-                        Nýskrá
+                        Innskrá
                       </NavLink>
                     </Fragment>
                   )
@@ -66,7 +66,7 @@ export default function Home() {
             <NavLink
               className="header__link"
               activeClassName="header__link header__link--selected"
-              exact to="/products"
+              exact to="/"
             >
               Nýjar vörur
             </NavLink>

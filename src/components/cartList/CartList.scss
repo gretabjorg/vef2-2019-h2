@@ -1,4 +1,12 @@
+@import '../../config';
+
 .cart {
   max-width: 70%;
   margin: 0 auto;
+
+  &__strong {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+  }
 }

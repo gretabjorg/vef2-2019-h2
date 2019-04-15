@@ -6,6 +6,8 @@ import Button from '../button/Button';
 import { postToCart, getCart } from '../../api';
 import { async } from 'q';
 
+import './Cart.scss';
+
 export default function AddToCart(props: any) {
   const { authenticated, token } = useContext(CurrentUser);
   const { id } = props;
@@ -18,11 +20,11 @@ export default function AddToCart(props: any) {
   }
 
   return(
-    <Fragment>
+    <div className="cart__item__options__quantity">
       <label>Fjöldi</label>
       <Input value={quantity} setValue={setQuantity}></Input>
-      <Button onClick={addToCart}>Bæta við körfu</Button>
-      {result ? <p>Bætt við körfu!</p> : null}
-    </Fragment>
+      <Button onClick={addToCart} small={true}>Bæta við körfu</Button>
+      {result ? <p className={"cart__item__p"}>Bætt við körfu!</p> : null}
+    </div>
   );
 }
