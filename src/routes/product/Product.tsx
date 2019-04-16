@@ -39,7 +39,7 @@ export default function Product(props: any) {
         <Redirect to="/notFound"/>
         :
         <>
-          <ProductComponent {...product} />
+          <ProductComponent {...product} auth={{authenticated, token}} add={{add,setAdd}} />
           <h2 className={"productDetails"}>{`Meira úr ${categoryTitle}`}</h2>
           <Products items={category}/>
         </>
