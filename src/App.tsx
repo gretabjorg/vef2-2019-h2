@@ -2,7 +2,7 @@ import React, { Component, useContext } from 'react';
 import Helmet from 'react-helmet';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 
-import { User, CurrentUser } from './context/currentUser';
+import { CurrentUser } from './context/currentUser';
 
 import Header from './components/header/Header';
 
@@ -26,6 +26,7 @@ type Props = {
 
 function App(props: Props) {
   const { authenticated } = useContext(CurrentUser);
+
   return (
     <React.Fragment>
       <Helmet defaultTitle="Vefforritunarbúðin" titleTemplate="%s – Vefforritunarbúðin" />

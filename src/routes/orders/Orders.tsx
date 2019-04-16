@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import useGetter from '../../api/fetchItems';
 
-import './Orders.scss';
+import OrdersPage from '../../components/orders/Orders';
+
+import { CurrentUser } from '../../context/currentUser';
+import { getOrders } from '../../api';
 
 export default function Orders() {
+  const { token } = useContext(CurrentUser);
+  const { items = [] } = useGetter(getOrders, {}, token);
+
   return (
-    <p>orders</p>
+    <OrdersPage items={items} />
   );
 }

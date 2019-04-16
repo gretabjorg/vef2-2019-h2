@@ -3,9 +3,17 @@ import React, { Fragment } from 'react';
 import Input from '../input/Input';
 import Button from '../button/Button';
 
+
+interface ISearchProps {
+  searchString: string;
+  setSearch: Function
+  submitSearch: () => void;
+}
+
+
 import './Search.scss';
 
-export default function Search(props: any) {
+export default function Search(props: ISearchProps) {
   const { searchString, setSearch, submitSearch } = props;
 
   return (

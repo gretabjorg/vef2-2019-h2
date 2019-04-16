@@ -1,5 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
-
+import React, { useEffect } from 'react';
 import { Product as ProductComponent } from '../../components/product/Product';
 import Products from '../../components/products/Products';
 import useGetter from '../../api/fetchItems';
@@ -30,10 +29,10 @@ export default function Product(props: any) {
   const { items: category } = useGetter(getProducts, initialState, 6, 0, categoryId);
 
   return (
-    <Fragment>
+    <>
       <ProductComponent {...product} />
       <h2 className={"productDetails"}>{`Meira úr ${categoryTitle}`}</h2>
       <Products items={category}/>
-    </Fragment>
+    </>
   );
 }

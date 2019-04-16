@@ -1,0 +1,33 @@
+@import '../../config.scss';
+
+.order_heading {
+  font-family: $font-heading;
+}
+
+.orders {
+  border-spacing: 0;
+  &__head {
+    color: $color-background;
+    background-color: $color-font;
+    text-align: left;
+  }
+
+  &__body:nth-child(odd) {
+    background-color: $color-gray;
+  }
+}
+
+.order_info {
+  font-family: $font-main;
+  &__row {
+    display: flex;
+  }
+  &__col {
+    display: block;
+    width: 25%;
+  }
+
+  &__label {
+    font-weight: 700;
+  }
+}

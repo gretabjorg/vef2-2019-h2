@@ -1,9 +1,9 @@
-import { IProduct } from './types';
+import { IProduct, PagedQuery, RequestError } from './types';
 
 // Sækja slóð á API úr env
 const baseurl:string | undefined = process.env.REACT_APP_API_URL;
 
-function getPage(limit: Number, offset: Number) {
+function getPage(limit: number, offset: number) {
   return `${
     limit
     ? offset 
@@ -24,7 +24,7 @@ async function getProduct(id: number | string) {
 }
 
 async function getProducts(
-  limit: Number, offset: Number, category: Number, search: String
+  limit: number, offset: number, category: number, search: string
 ) {
   const page = getPage(limit, offset);
   const isPage = `${page ? '&' : '?'}`
@@ -46,9 +46,9 @@ async function getProducts(
 }
 
 async function getCategories(
-  limit: Number, offset: Number, category: Number
+  limit: number, offset: number, category: number
 ) {
-  const id = `${category ? `/${category}` : ''}`;
+  const id = category ? `${category}` : '';
   const page = getPage(limit, offset);
 
   const path = `categories/${id}${page}`;
@@ -58,7 +58,7 @@ async function getCategories(
   return result.json();
 }
 
-async function postLogin(username: String, password: String) {
+async function postLogin(username: string, password: string) {
   const path = 'users/login';
   const url = new URL(path, baseurl);
 
@@ -101,7 +101,7 @@ async function postRegister(username: String, password: String, email: String) {
   return result.json();
 }
 
-async function getCart(token: String) {
+async function getCart(token: string) {
   const url = new URL('cart', baseurl);
   const result = await fetch(url.href, {
     headers: {
@@ -111,7 +111,7 @@ async function getCart(token: String) {
   return result.json();  
 }
 
-async function getCartLine(token: String, id: Number | undefined) {
+async function getCartLine(token: string, id: number) {
   const url = new URL(`cart/line/${id}`, baseurl);
   const result = await fetch(url.href, {
     headers: {
@@ -121,7 +121,7 @@ async function getCartLine(token: String, id: Number | undefined) {
   return result.json();  
 }
 
-async function updateCartLine(token: String, id: Number, quantity: Number) {
+async function updateCartLine(token: string, id: number, quantity: number) {
   const path = `cart/line/${id}`;
   const url = new URL(path, baseurl);
 
@@ -139,7 +139,7 @@ async function updateCartLine(token: String, id: Number, quantity: Number) {
   return json;
 }
 
-async function deleteCartLine(token: String, id: Number) {
+async function deleteCartLine(token: string, id: number) {
   const path = `cart/line/${id}`;
   const url = new URL(path, baseurl);
   await fetch(url.href, {
@@ -149,7 +149,6 @@ async function deleteCartLine(token: String, id: Number) {
     }
   });
 }
-
 
 async function postToCart(token: String, product: Number, quantity: Number) {
   const path = `/cart`;
@@ -173,17 +172,13 @@ async function postToCart(token: String, product: Number, quantity: Number) {
   return json;
 }
 
-async function orderCart(token: String, name: String, address: String) {
+async function orderCart(token: string, name: string, address: string) {
   const path = 'orders';
   const url = new URL(path, baseurl);
-  const shipping = { name, address };
-  console.log(JSON.stringify({
-    "name":name,
-    "address":address
-  }));
+
   const result = await fetch(url.href, {
     method: 'POST',
-      headers: {
+    headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': "application/json"
       },
@@ -191,6 +186,32 @@ async function orderCart(token: String, name: String, address: String) {
       "name":name,
       "address":address
     })
+  });
+
+  return result.json();
+}
+
+async function getOrders(token: string) {
+  const path = 'orders';
+  const url = new URL(path, baseurl);
+  const result = await fetch(url.href, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  return result.json();
+}
+
+async function getOrder(token: string, id: number) {
+  const path = `orders/${id}`;
+  const url = new URL(path, baseurl);
+  const result = await fetch(url.href, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
   });
 
   return result.json();
@@ -208,4 +229,6 @@ export {
   deleteCartLine,
   postToCart,
   orderCart,
+  getOrders,
+  getOrder,
 };

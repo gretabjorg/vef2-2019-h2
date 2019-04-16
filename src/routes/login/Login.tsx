@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
-import { CurrentUser, User } from '../../context/currentUser';
+import { CurrentUser } from '../../context/currentUser';
 
 import './Login.scss';
 
@@ -73,7 +73,6 @@ function LoginContent() {
 }
 
 export default function Login() {
-  // loginUser('gunnar', 'agoodpasswordman');
   return (
     <LoginContent />
   );

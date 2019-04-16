@@ -2,14 +2,23 @@ import React, { Fragment } from 'react';
 
 import CartItem from '../cartItem/CartItem';
 
+import { IProduct } from '../../api/types';
+
+interface ICartListProps {
+  cart: IProduct[];
+  total: number;
+  updateItem: Function;
+  deleteItem: Function;
+}
+
 import './CartList.scss';
-export default function CartList(props: any) {
+
+export default function CartList(props: ICartListProps) {
   const { cart = [], total } = props;
   const { updateItem, deleteItem } = props;
-  const list = cart.map((line: any) => 
-    <Fragment>
+  const list = cart.map((line: IProduct) => 
+    <Fragment key={ line.id }>
       <CartItem
-        key={ line.id }
         updateItem={ updateItem }
         deleteItem={ deleteItem }
         { ...line }/>

@@ -7,7 +7,7 @@ import { getCategories } from '../../api/index';
 
 import './Categories.scss';
 
-export default function CategoryRoute(props: any) {
+export default function CategoryRoute() {
   const initialState = {
     limit: 0,
     offset: 0,
