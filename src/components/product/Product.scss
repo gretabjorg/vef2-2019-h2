@@ -4,11 +4,17 @@
   display: flex;
   margin-right: -$gutter/2;
   margin-left: -$gutter/2;
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+  }
 
   &__col {
     max-width: 50%;
     padding: $gutter 0;
     margin: $gutter/2;
+    @media (max-width: 800px) {
+      max-width: 100%;
+    }
     img {
       max-width: 100%;
     }
@@ -20,7 +26,7 @@
   }
 
   &__details {
-    margin-bottom: $gutter/2;
+    margin: $gutter 0;
   }
 
   &__description {
