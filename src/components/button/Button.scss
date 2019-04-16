@@ -5,7 +5,7 @@
 
   width: 100%;
   max-width: 250px;
-  padding: 10px 15px;
+  padding: $gutter/3 $gutter/2;
   margin: 0;
 
   font-family: $font-main;
@@ -32,7 +32,7 @@
   }
 
   &--small {
-    padding: 5px 10px;
+    padding: $gutter/6 $gutter/3;
     max-width: initial;
     width: auto;
 

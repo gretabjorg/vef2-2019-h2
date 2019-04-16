@@ -25,9 +25,9 @@ function LoginForm(props: any) {
   const doLogin = () => {
     login(user, password);
   };
-
-  const validationList = <ValidationList validation={validation} />
-
+  
+  const validationList = <ValidationList validation={validation} error={error} />
+  
   return (
     <Fragment>
       <div className={"login__col"}>
@@ -56,7 +56,7 @@ export default function Login(props: any) {
   const {
     loginUser, authenticated, validation, error, fetching
   } = useContext(CurrentUser);;
-  console.log(props);
+  
   return (
     <Fragment>
         { 

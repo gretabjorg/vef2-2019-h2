@@ -59,7 +59,7 @@ export default function CategoryRoute(props: any) {
       <Products items={items}/>
       <div className="category__page">
         { page ? <Button onClick={() => setPage(page - 12) } children={ "Fyrri síða" } small={true} /> : null }
-        <p className="category__page__number">{`Síða ${page / 12 + 1}`}</p>
+        { page === 0 ? null : <p className="category__page__number">{`Síða ${page / 12 + 1}`}</p> }
         { hasNextPage ? <Button onClick={() => setPage(page + 12) } children={ "Næsta síða" } /> : null }
       </div>
     </div>

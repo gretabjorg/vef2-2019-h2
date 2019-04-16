@@ -10,15 +10,18 @@ import './Cart.scss';
 export default function AddToCart(props: any) {
   const { id, token, add: state } = props;
   const { add, setAdd } = state;
+  const [reset, setReset] = useState(false)
   const [quantity, setQuantity] = useState(1);
-  // const [result, setResult] = useState('');
   const addToCart = async () => {
     const result = await postToCart(token, id, quantity);
     !result.errors ? setAdd(true) : () => {};
+    (quantity != 1) ? setReset(true) : null;
   }
 
   useEffect(() => {
     setAdd(false);
+    setReset(false);
+    setQuantity(1);
   }, [id]);
 
   return(
