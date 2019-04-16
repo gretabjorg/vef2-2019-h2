@@ -1,33 +1,65 @@
 @import '../../config.scss';
 
+.order_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 66%;
+  margin: 0 auto;
+}
+
 .order_heading {
   font-family: $font-heading;
+  margin: 30px 0;
+  align-self: flex-start;
 }
 
 .orders {
+  width: 100%;
   border-spacing: 0;
   &__head {
     color: $color-background;
     background-color: $color-font;
     text-align: left;
-  }
 
-  &__body:nth-child(odd) {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  &__th {
+    padding: 8px;
+  }
+  &__row:nth-child(even) {
     background-color: $color-gray;
+  }
+  &__link {
+    text-decoration: none;
+    color: #000;
+  }
+  &__strong {
+    padding: 8px 0;
   }
 }
 
 .order_info {
+  width: 100%;
   font-family: $font-main;
+  &__h1 {
+    margin: 30px 0;
+    font-family: $font-heading;
+  }
+  &__info {
+    margin-bottom: 30px;
+  }
   &__row {
     display: flex;
   }
   &__col {
     display: block;
-    width: 25%;
+    width: 35%;
   }
-
   &__label {
     font-weight: 700;
   }
+  
 }
