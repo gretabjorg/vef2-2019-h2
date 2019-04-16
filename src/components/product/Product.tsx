@@ -9,10 +9,10 @@ export default function Product(props: any) {
   const { add, setAdd } = state;
   return (
     <div className="product">
-      <div className="product__col">
+      <div className="product__col product__col__image">
         <img src={image}/>
       </div>
-      <div className="product__col">
+      <div className="product__col product__col__col">
         <h1 className="product__title">{title}</h1>
         <div className="product__details">
           <p>{`Flokkur: ${category}`}</p>
