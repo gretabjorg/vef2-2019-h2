@@ -2,8 +2,10 @@ import React from 'react';
 
 import './Input.scss';
 
-export default function Input(props: any) {
-  const { value, setValue, pressedEnter={} } = props;
+export default function Input(
+  {value, setValue, pressedEnter=() => {}}
+  : { value: string | number, setValue: Function, pressedEnter?: Function}
+) {
   return (
     <input 
       onChange={e => setValue(e.target.value)}

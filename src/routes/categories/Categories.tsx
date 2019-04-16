@@ -5,7 +5,7 @@ import Categories from '../../components/categories/Categories';
 import useGetter from '../../api/fetchItems';
 import { getCategories } from '../../api/index';
 
-export default function CategoryRoute(props: any) {
+export default function CategoryRoute() {
   const initialState = {
     limit: 0,
     offset: 0,

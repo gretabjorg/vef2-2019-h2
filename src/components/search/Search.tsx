@@ -3,7 +3,13 @@ import React, { Fragment } from 'react';
 import Input from '../input/Input';
 import Button from '../button/Button';
 
-export default function Search(props: any) {
+interface ISearchProps {
+  searchString: string;
+  setSearch: Function
+  submitSearch: () => void;
+}
+
+export default function Search(props: ISearchProps) {
   const { searchString, setSearch, submitSearch } = props;
 
   return (

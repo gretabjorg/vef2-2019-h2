@@ -11,7 +11,7 @@ import './List.scss';
  * @param WrappedComponent Component til þess að bira gögnin úr items
  * @param items Fylki af gögnum
  */
-const listWrap = (WrappedComponent: any, items = []) => (props: any) => {
+const listWrap = (WrappedComponent: any, items: any[] = []) => (props: any) => {
   const list = 
     items.map((item: any) =>
       <div key={item.id} className="list__col">

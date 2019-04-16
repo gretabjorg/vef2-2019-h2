@@ -23,6 +23,37 @@ export interface IUser {
   admin: boolean;
 }
 
+export interface ICart {
+  id: number;
+  created: Date;
+  updated: Date;
+  lines: IProduct[];
+  total: number;
+}
+
+export interface ICartLine {
+  category_id: number;
+  category_title: string;
+  created: Date;
+  description?: string;
+  image?: string;
+  price: number;
+  product_id: number;
+  quantity: number;
+  title: string;
+  total: number;
+  updated: Date;
+}
+
+export interface IOrder {
+  address: string;
+  created: Date;
+  id: number;
+  name: string;
+  updated: Date;
+  user_id: number;
+}
+
 export interface ICurrentUser {
   authenticated: boolean;
   user: IUser;
@@ -31,4 +62,31 @@ export interface ICurrentUser {
   token: string;
   loginUser: Function;
   logoutUser: Function;
+}
+
+export interface PagedQuery {
+  limit: number;
+  offset: number;
+  items: any[];
+  _links: {
+    self: {
+      href: string
+    }
+    next: {
+      href: string
+    }
+  };
+} 
+
+export interface RequestError {
+  error: string
+}
+
+export interface ValidationError {
+  field: string;
+  error: string
+}
+
+export interface ValidationErrorArray {
+  errors: ValidationError[]
 }

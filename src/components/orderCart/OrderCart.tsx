@@ -2,11 +2,14 @@ import React, { Fragment, useState } from 'react';
 
 import Input from '../input/Input';
 import Button from '../button/Button';
+import { ValidationError } from '../../api/types';
 
-export default function(props: any) {
+export default function(
+  { orderCart, errors }
+  : { orderCart: Function, errors: ValidationError[]}
+) {
   const [ name, setName ] = useState('');
   const [ address, setAddress ] = useState('');
-  const { orderCart, errors } = props;
 
   const doOrder = async () =>
     orderCart(name, address);
