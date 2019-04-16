@@ -26,7 +26,7 @@ function LoginForm(props: any) {
     login(user, password);
   };
 
-  const validationList = <ValidationList validation={validation} />
+  const validationList = <ValidationList validation={validation} error={error} />
 
   return (
     <Fragment>
