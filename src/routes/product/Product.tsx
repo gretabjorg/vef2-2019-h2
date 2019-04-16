@@ -1,3 +1,4 @@
+import { Redirect } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from 'react';
 import { Product as ProductComponent } from '../../components/product/Product';
 import Products from '../../components/products/Products';
@@ -34,9 +35,15 @@ export default function Product(props: any) {
 
   return (
     <>
-      <ProductComponent {...product} auth={{authenticated, token}} add={{add,setAdd}} />
-      <h2 className={"productDetails"}>{`Meira úr ${categoryTitle}`}</h2>
-      <Products items={category}/>
+      {product.id === undefined ?
+        <Redirect to="/notFound"/>
+        :
+        <>
+          <ProductComponent {...product} />
+          <h2 className={"productDetails"}>{`Meira úr ${categoryTitle}`}</h2>
+          <Products items={category}/>
+        </>
+      }
     </>
   );
 }
