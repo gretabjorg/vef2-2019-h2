@@ -20,7 +20,7 @@ export default function Search(props: ISearchProps) {
     <Fragment>
       <div className={"search"}>
         <label className={"search__label"}>{'Leita:'}</label>
-        <Input className={"search__input"} value={searchString} setValue={setSearch}/>
+        <Input value={searchString} setValue={setSearch}/>
         <Button className={"search__button"} onClick={ submitSearch } small={true} children={'Leita'}/>
       </div>
     </Fragment>
