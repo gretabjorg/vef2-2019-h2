@@ -53,7 +53,7 @@ export default function Register(props: any) {
       </div>
       <div className={"register__col"}>
         <label className={"register__label"}>Lykilorð:</label>
-        <Input value={password} setValue={setPassword}/>
+        <Input value={password} setValue={setPassword} type="password"/>
       </div>
       <div className={"register__col"}>
         <label className={"register__label"}>Netfang:</label>
