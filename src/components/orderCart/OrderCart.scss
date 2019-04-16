@@ -1,6 +1,12 @@
-@import '../../config.scss';
+@import '../../config';
 
-.register {
+.order {
+  max-width: 70%;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.orderCart {
   &__col {
     margin: $gutter / 2;
     display: flex;
@@ -9,11 +15,6 @@
 
   &__label {
     width: 50%;    
-  }
-
-  &__link {
-    text-decoration: none;
-    color: #000;
   }
 
   &__ul {

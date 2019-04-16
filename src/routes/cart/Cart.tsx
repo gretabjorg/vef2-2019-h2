@@ -7,6 +7,7 @@ import { getCart } from '../../api/index';
 import { CurrentUser } from '../../context/currentUser';
 import CartList from '../../components/cartList/CartList';
 import OrderCart from '../../components/orderCart/OrderCart';
+import Button from '../../components/button/Button';
 
 import { updateCartLine, deleteCartLine, orderCart } from '../../api/index';
 import { ValidationError, IProduct } from '../../api/types';
@@ -39,8 +40,8 @@ function CartPage(props: ICartPageProps) {
           )
           : (
             <Fragment>
-              <h1>Karfan er tóm</h1>
-              <Link to="/products">Má bjóða þér að versla?</Link>
+              <h1 className={"cart__h1"}>Karfan er tóm</h1>
+              <Link to='/'><Button children={'Má bjóða þér að versla?'}/></Link>
             </Fragment>
           )
       }

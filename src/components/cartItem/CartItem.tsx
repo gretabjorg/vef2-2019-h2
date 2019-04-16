@@ -30,7 +30,6 @@ export default function CartItem(props: any) {
         </div>
         <div className="cart__item__info__text">
           <h2>{ title }</h2>
-          <p>{ id }</p>
           <p>{ `Verð: ${price} kr.-` }</p>
         </div>
       </div>
@@ -41,7 +40,7 @@ export default function CartItem(props: any) {
           <Button onClick={doUpdate} children="Uppfæra" small={true}/>
         </div>
         <strong>{ `Samtals: ${ total } kr.-` }</strong>
-        <Button onClick={doDelete} children="Eyða" small={true}/>
+        <Button onClick={doDelete} children="Eyða línu" small={true}/>
       </div>
     </div>
   )

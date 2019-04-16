@@ -4,6 +4,8 @@ import Products from '../../components/products/Products';
 import useGetter from '../../api/fetchItems';
 import { getProduct, getProducts } from '../../api';
 
+import './Product.scss';
+
 export default function Product(props: any) {
   // scrollar efst ef að það er klikkað á link
   useEffect(() => {window.scrollTo(0, 0)});
@@ -29,7 +31,7 @@ export default function Product(props: any) {
   return (
     <>
       <ProductComponent {...product} />
-      <h2>{`Meira úr ${categoryTitle}`}</h2>
+      <h2 className={"productDetails"}>{`Meira úr ${categoryTitle}`}</h2>
       <Products items={category}/>
     </>
   );

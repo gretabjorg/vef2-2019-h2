@@ -28,7 +28,9 @@ export default function CartList(props: ICartListProps) {
   return (
     <div className="cart">
       { list }
-      <p>{ `Karfa samtals: ${total} kr.-` }</p>
+      <div className={"cart__strong"}>
+        <strong>{ `Karfa samtals: ${ total } kr.-` }</strong>
+      </div>
     </div>
   );
 } 

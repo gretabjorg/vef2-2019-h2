@@ -1,4 +1,27 @@
 @import '../../config.scss';
 
-.cart {
+.cart__item {
+  display: flex;
+  justify-content: space-between;
+  padding: $gutter 0;
+
+  &__p {
+    margin-left: 10px;
+  }
+
+  &__options {
+    display: flex;
+    flex: 1;
+    padding: $gutter/3;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    &__quantity {
+      display: flex;
+      input {
+        width: 4em;
+        margin: 0 $gutter/2;
+      }
+    }
+  }
 }

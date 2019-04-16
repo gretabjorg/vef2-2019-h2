@@ -8,6 +8,7 @@ export default function Input(
 ) {
   return (
     <input 
+      className={"input"}
       onChange={e => setValue(e.target.value)}
       onKeyPress={e => { if(e.key === 'Enter') pressedEnter }} 
       type="text" 

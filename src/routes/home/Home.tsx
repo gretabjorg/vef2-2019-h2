@@ -50,7 +50,7 @@ export default function Home() {
               pathname: '/categories'
             }}
             >
-              <Button children={'Skoða alla flokka'} />
+              <Button children={'Skoða alla flokka'}/>
             </Link>
         </div>
         <h2 className="fp__heading">Skoðaðu vöruflokkana okkar</h2>

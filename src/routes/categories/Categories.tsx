@@ -5,6 +5,8 @@ import Categories from '../../components/categories/Categories';
 import useGetter from '../../api/fetchItems';
 import { getCategories } from '../../api/index';
 
+import './Categories.scss';
+
 export default function CategoryRoute() {
   const initialState = {
     limit: 0,
@@ -29,7 +31,7 @@ export default function CategoryRoute() {
 
   return (
     <div className="category">
-      <h1>Skoðaðu vöruflokkana okkar</h1>
+      <h1 className="categories__h1" >Skoðaðu vöruflokkana okkar</h1>
       <Categories items={items}/>
     </div>
   );

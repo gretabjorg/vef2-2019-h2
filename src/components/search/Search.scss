@@ -1,5 +1,15 @@
 @import '../../config.scss';
 
 .search {
+  display: flex;
+  padding: 10px 10px 10px 0;
+  width: 30%;
 
+  &__label {
+    padding: 10px 10px 10px 0;
+  }
+
+  &__button {
+    margin-left: 10px;
+  }
 }

@@ -51,14 +51,14 @@ export default function CategoryRoute(props: any) {
   function handleSearch() {
     submitSearch(search);
   }
-
+  
   return (
     <div className="category">
     <h1>{ title }</h1>
       <Search searchString={search} setSearch={setSearch} submitSearch={handleSearch} />
       <Products items={items}/>
       <div className="category__page">
-        { page ? <Button onClick={() => setPage(page - 12) } children={ "Fyrri síða" } /> : null }
+        { page ? <Button onClick={() => setPage(page - 12) } children={ "Fyrri síða" } small={true} /> : null }
         <p className="category__page__number">{`Síða ${page / 12 + 1}`}</p>
         { hasNextPage ? <Button onClick={() => setPage(page + 12) } children={ "Næsta síða" } /> : null }
       </div>

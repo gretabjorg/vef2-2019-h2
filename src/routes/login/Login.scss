@@ -1,4 +1,19 @@
 @import '../../config.scss';
 
 .login {
+
+  &__col {
+    margin: $gutter / 2;
+    display: flex;
+    max-width: 500px;
+  }
+
+  &__label {
+    width: 50%;    
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #000;
+  }
 }
