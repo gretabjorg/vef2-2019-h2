@@ -32,8 +32,9 @@ export default function Register(props: any) {
     return <Redirect to="/login"/>
   }
 
-  const validationList = validation.map((validation: any, i: number) => (
-    <li key={i}>{`${validation.field}, ${validation.error}`}</li>
+  let i = 1;
+  const validationList = validation.map((validation: any, i) => (
+    <li key={i++}>{`${validation.field}, ${validation.error}`}</li>
   ));
 
   return (
