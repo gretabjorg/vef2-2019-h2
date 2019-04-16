@@ -35,10 +35,10 @@ export default function Product(props: any) {
         <Redirect to="/notFound"/>
         :
         <>
-      <ProductComponent {...product} />
-      <h2 className={"productDetails"}>{`Meira úr ${categoryTitle}`}</h2>
-      <Products items={category}/>
-    </>
+          <ProductComponent {...product} />
+          <h2 className={"productDetails"}>{`Meira úr ${categoryTitle}`}</h2>
+          <Products items={category}/>
+        </>
       }
     </>
   );

@@ -24,7 +24,7 @@ function OrderInfo(
   : { id: number, name: string, address: string, created: Date }
 ) {
   return (
-    <div className="order_info">
+  <div className="order_info">
     <h1 className="order_info__h1">{`Pöntun #${id}`}</h1>
     <div className="order_info__info">
       <div className="order_info__row">
@@ -62,19 +62,19 @@ export default function OrderPage({ items }:{items: any}) {
           <thead className="orders__head">
             <tr>
               <th className="orders__th">Vara</th>
-            <th>Verð</th>
-            <th>Fjöldi</th>
-            <th>Samtals</th>
-          </tr>
-        </thead>
+              <th>Verð</th>
+              <th>Fjöldi</th>
+              <th>Samtals</th>
+            </tr>
+          </thead>
           <tbody>
-          { itemTableRows }
+            { itemTableRows }
             <tr>
               <td colSpan={3}/>
               <td className="orders__strong"><strong>{ `${ total } kr.-` }</strong></td>
             </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
         <div className="order_info">
           <Link className="orders__link" to="/orders">Aftur í pantanir</Link>
         </div>
