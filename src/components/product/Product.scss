@@ -13,9 +13,9 @@
     padding: $gutter 0;
     margin: $gutter/2;
     &__col {
-    @media (max-width: 800px) {
-      max-width: 100%;
-    }
+      @media (max-width: 800px) {
+        max-width: 100%;
+      }
     }
     &__image {
       @media (max-width: 800px) {
