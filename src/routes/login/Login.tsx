@@ -56,7 +56,7 @@ export default function Login(props: any) {
   const {
     loginUser, authenticated, validation, error, fetching
   } = useContext(CurrentUser);;
-  console.log(props);
+  
   return (
     <Fragment>
         { 
