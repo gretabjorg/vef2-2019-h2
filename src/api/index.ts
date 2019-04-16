@@ -48,7 +48,7 @@ async function getProducts(
 async function getCategories(
   limit: number, offset: number, category: number
 ) {
-  const id = `${category ? `/${category}` : ''}`;
+  const id = category ? `${category}` : '';
   const page = getPage(limit, offset);
 
   const path = `categories/${id}${page}`;

@@ -61,7 +61,6 @@ function LoginContent() {
 }
 
 export default function Login() {
-  // loginUser('gunnar', 'agoodpasswordman');
   return (
     <LoginContent />
   );

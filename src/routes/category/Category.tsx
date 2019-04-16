@@ -6,15 +6,16 @@ import Search from '../../components/search/Search';
 
 
 import useGetter from '../../api/fetchItems';
-import { getProducts } from '../../api/index';
+import { getProducts, getCategories } from '../../api/index';
 
 import './Category.scss';
 
-export default function CategoryRoute() {
+export default function CategoryRoute(props: any) {
   const [ page, setPage ] = useState(0);
   const [ search, setSearch ] = useState('');
   const [ query, submitSearch ] = useState(search);
   const limit = 12;
+  const { id } = props.match.params;
   const initialState = {
     limit: 0,
     offset: 0,
@@ -34,9 +35,13 @@ export default function CategoryRoute() {
 
   // Sækjum 13 vörur til þess að athuga hvort það sé ný síða
   const { items } = useGetter(
-    getProducts, initialState, limit+1, page, null, query
+    getProducts, initialState, limit+1, page, id, query
   );
-
+  
+  const { title } = useGetter(
+    getCategories, {}, null, null, id
+  );
+  
   // Ný síða ef það eru fleiri vörur er passa
   const hasNextPage = items.length > limit ? true : false;
   if (items.length > limit) {
@@ -49,6 +54,7 @@ export default function CategoryRoute() {
 
   return (
     <div className="category">
+    <h1>{ title }</h1>
       <Search searchString={search} setSearch={setSearch} submitSearch={handleSearch} />
       <Products items={items}/>
       <div className="category__page">
