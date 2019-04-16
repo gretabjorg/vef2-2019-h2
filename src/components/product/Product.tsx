@@ -1,15 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
 import './Product.scss';
 import AddToCart from '../cart/AddToCart';
-import { postToCart, getCart } from '../../api';
-import { CurrentUser } from '../../context/currentUser';
-import useGetter from '../../api/fetchItems';
 
 export default function Product(props: any) {
-  const { id, title, price, image, description, category_title: category } = props;
-  const { authenticated, token } = useContext(CurrentUser);
-  
+  const { id, title, price, image, description, category_title: category, auth, add: state } = props;
+  const { authenticated, token } = auth;
+  const { add, setAdd } = state;
   return (
     <div className="product">
       <div className="product__col">
@@ -24,8 +21,8 @@ export default function Product(props: any) {
         <p className="product__description">{description}</p>
         {
           authenticated ?
-          <AddToCart  id={id} />
-          : ''
+          <AddToCart  id={id} token={token} add={{add, setAdd}} />
+          : null
         }
       </div>   
     </div>

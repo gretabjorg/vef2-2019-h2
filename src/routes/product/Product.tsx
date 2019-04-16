@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
 import { Product as ProductComponent } from '../../components/product/Product';
 import Products from '../../components/products/Products';
 import useGetter from '../../api/fetchItems';
 import { getProduct, getProducts } from '../../api';
 
+import { CurrentUser } from '../../context/currentUser';
+
 import './Product.scss';
 
 export default function Product(props: any) {
+  const { authenticated, token } = useContext(CurrentUser);
   // scrollar efst ef að það er klikkað á link
   useEffect(() => {window.scrollTo(0, 0)});
   const { id } = props.match.params;
@@ -28,6 +31,7 @@ export default function Product(props: any) {
   } = product;
   
   const { items: category } = useGetter(getProducts, initialState, 6, 0, categoryId);
+  const [ add, setAdd ] = useState(false);
 
   return (
     <>

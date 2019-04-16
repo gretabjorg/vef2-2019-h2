@@ -21,7 +21,7 @@ export default function Home() {
                       <NavLink 
                         onClick={() => {logout()}}
                         className="header__link"
-                        activeClassName="header__link header__link--selected"
+                        activeClassName="header__link"
                         exact to="/"
                       >
                         {`${user.username}(útskrá)`}
@@ -55,7 +55,7 @@ export default function Home() {
                   )
             }
             <NavLink
-              className="header__link"
+              className="header__link header__cart_link"
               activeClassName="header__link header__link--selected"
               exact to="/cart"
             >

@@ -62,6 +62,7 @@ export interface ICurrentUser {
   token: string;
   loginUser: Function;
   logoutUser: Function;
+  fetching: boolean;
 }
 
 export interface PagedQuery {
@@ -85,8 +86,4 @@ export interface RequestError {
 export interface ValidationError {
   field: string;
   error: string
-}
-
-export interface ValidationErrorArray {
-  errors: ValidationError[]
 }

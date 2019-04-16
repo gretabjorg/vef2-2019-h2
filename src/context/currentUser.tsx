@@ -12,6 +12,7 @@ const initialUser: ICurrentUser = {
   token: '',
   loginUser: (username: string, password: string) => {},
   logoutUser: () => {},
+  fetching: false,
 }
 
 const CurrentUser = createContext(initialUser);
@@ -28,18 +29,19 @@ function User(props: any) {
   const [ error, setError ] = useState('');
   const [ currentUser, setUser ] = useState(user);
   const [ currentToken, setToken ] = useState(token);
-
+  const [ fetching, setFetching ] = useState(false);
   const loginUser = async (username: string, password: string) => {
     let login: any;
+    setFetching(true);
     try {
       login = await postLogin(username, password);
+      setFetching(false);
     } catch (e) {
       console.error(e.message);
     }
 
     if (login.length > 0) {
       setValidation(login);
-
     }
     
     if (login.error) {
@@ -53,7 +55,7 @@ function User(props: any) {
       setUser(user);
       localStorage.setItem('user', JSON.stringify(user));
       setAuth(true);
-
+      setFetching(false);
     }
   };
 
@@ -78,6 +80,7 @@ function User(props: any) {
     token: currentToken,
     loginUser,
     logoutUser,
+    fetching,
   };
 
   return (
