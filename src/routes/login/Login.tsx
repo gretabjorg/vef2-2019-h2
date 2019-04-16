@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
@@ -7,12 +7,13 @@ import Button from '../../components/button/Button';
 import { CurrentUser } from '../../context/currentUser';
 
 import './Login.scss';
+import ValidationList from '../../components/validationList/ValidationList';
 
-function LoggedIn(props: any) {
-  const { user } = props;
+function Loading(props: any) {
+  const { message } = props;
   return (
     <p>{
-      `Velkominn ${user.username}`
+      `${message}`
     }</p>
   )
 }
@@ -25,29 +26,23 @@ function LoginForm(props: any) {
     login(user, password);
   };
 
-  const validationList = validation.map((validation: any) => (
-    <div>
-      <p>{validation.field}</p>
-      <p>{validation.error}</p>
-    </div>
-  ));
-    
+  const validationList = <ValidationList validation={validation} />
+
   return (
     <Fragment>
       <div className={"login__col"}>
         <h1>Innskráning</h1>
       </div>
-      <div className={"login__col"}>
-        {error}
-        {validationList}
-      </div>
+      {validationList}
       <div className={"login__col"}>
         <label className={"login__label"}>Notandanafn:</label>
         <Input value={user} setValue={setUser}/>
       </div>
       <div className={"login__col"}>
         <label className={"login__label"}>Lykilorð:</label>
-        <Input value={password} setValue={setPassword}/>
+        <Input value={password} setValue={setPassword} type="password"/>
+      </div>
+      <div className={"login__col"}>
       </div>
       <Button onClick={doLogin} children={'Skrá inn'}/>
       <div className={"login__col"}>
@@ -57,23 +52,20 @@ function LoginForm(props: any) {
   );
 }
 
-function LoginContent() {
+export default function Login(props: any) {
   const {
-    user, loginUser, logoutUser, authenticated, validation, error
+    loginUser, authenticated, validation, error, fetching
   } = useContext(CurrentUser);;
+  console.log(props);
   return (
     <Fragment>
         { 
           authenticated
-          ? <LoggedIn user={user} logout={logoutUser} />
-          : <LoginForm validation={validation} error={error} login={loginUser}/>
+          ? <Redirect to="/" />//<LoggedIn user={user} logout={logoutUser} />
+          : fetching
+            ? <Loading message={"Skrái inn"} />
+            : <LoginForm validation={validation} error={error} login={loginUser} />
         }
     </Fragment>
   );
 }
-
-export default function Login() {
-  return (
-    <LoginContent />
-  );
-};
