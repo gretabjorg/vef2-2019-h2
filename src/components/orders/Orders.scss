@@ -7,11 +7,14 @@
   flex-direction: column;
   width: 66%;
   margin: 0 auto;
+  @media (max-width: 800px) {
+    width: 100%;
+}
 }
 
 .order_heading {
   font-family: $font-heading;
-  margin: 30px 0;
+  margin: $gutter 0;
   align-self: flex-start;
 }
 
@@ -27,7 +30,7 @@
     width: 100%;
   }
   &__th {
-    padding: 8px;
+    padding: $gutter / 5;
   }
   &__row:nth-child(even) {
     background-color: $color-gray;
@@ -35,9 +38,10 @@
   &__link {
     text-decoration: none;
     color: #000;
+    padding-bottom: $gutter;
   }
   &__strong {
-    padding: 8px 0;
+    padding: $gutter / 5 0;
   }
 }
 
@@ -45,11 +49,11 @@
   width: 100%;
   font-family: $font-main;
   &__h1 {
-    margin: 30px 0;
+    margin: $gutter 0;
     font-family: $font-heading;
   }
   &__info {
-    margin-bottom: 30px;
+    margin-bottom: $gutter;
   }
   &__row {
     display: flex;
