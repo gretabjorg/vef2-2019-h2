@@ -20,8 +20,9 @@
 - ( stjórnendadót )
 
 ## Annað
+- ReadMe og documentation
+- Búa til týpur
 
-=========================================================
 Útfæra skal framenda ofan á vefþjónustur úr hópverkefni 1.
 
 ## Virkni
