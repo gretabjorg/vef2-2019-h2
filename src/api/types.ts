@@ -62,6 +62,7 @@ export interface ICurrentUser {
   token: string;
   loginUser: Function;
   logoutUser: Function;
+  clearErrors: Function,
   fetching: boolean;
 }
 

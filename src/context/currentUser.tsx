@@ -12,6 +12,7 @@ const initialUser: ICurrentUser = {
   token: '',
   loginUser: (username: string, password: string) => {},
   logoutUser: () => {},
+  clearErrors: () => {},
   fetching: false,
 }
 
@@ -72,6 +73,11 @@ function User(props: any) {
     setAuth(false);
   };
 
+  const clearErrors = () => {
+    setValidation([]);
+    setError('');
+  }
+
   const state = {
     authenticated,
     user: currentUser,
@@ -80,6 +86,7 @@ function User(props: any) {
     token: currentToken,
     loginUser,
     logoutUser,
+    clearErrors,
     fetching,
   };
 
