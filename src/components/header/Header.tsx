@@ -73,7 +73,7 @@ export default function Home() {
             <NavLink
               className="header__link"
               activeClassName="header__link header__link--selected"
-              exact to="/categories"
+              to="/categories"
             >
               Flokkar
             </NavLink>
