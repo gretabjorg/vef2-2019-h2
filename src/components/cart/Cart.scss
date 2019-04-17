@@ -11,6 +11,8 @@
     padding: $gutter 0;
   
     &__p {
+      display: flex;
+      align-items: center;
       margin-left: $gutter/3;
     }
   
