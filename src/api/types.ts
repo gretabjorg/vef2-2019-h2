@@ -79,10 +79,6 @@ export interface PagedQuery {
   };
 } 
 
-export interface RequestError {
-  error: string
-}
-
 export interface ValidationError {
   field: string;
   error: string

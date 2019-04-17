@@ -1,26 +1,32 @@
 @import '../../config.scss';
 
-.cart__item {
-  display: flex;
-  justify-content: space-between;
-  padding: $gutter 0;
-
-  &__p {
-    margin-left: $gutter/3;
+.cart {
+  &__h1 {
+    margin-bottom: $gutter;
   }
 
-  &__options {
+  &__item {
     display: flex;
-    flex: 1;
-    padding: $gutter/3;
-    flex-direction: column;
-    align-items: flex-start;
     justify-content: space-between;
-    &__quantity {
+    padding: $gutter 0;
+  
+    &__p {
+      margin-left: $gutter/3;
+    }
+  
+    &__options {
       display: flex;
-      input {
-        width: 4em;
-        margin: 0 $gutter/2;
+      flex: 1;
+      padding: $gutter/3;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      &__quantity {
+        display: flex;
+        input {
+          width: 4em;
+          margin: 0 $gutter/2;
+        }
       }
     }
   }

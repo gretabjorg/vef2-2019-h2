@@ -1,5 +1,11 @@
 @import '../../config.scss';
 
 .paging {
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: $gutter;
+  &__number {
+    margin: $gutter;
+  }
 }

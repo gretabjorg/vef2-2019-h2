@@ -1,53 +1,13 @@
-import React, { Fragment, useState, useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Route } from 'react-router-dom';
 
-import './Cart.scss';
 import useGetter from '../../api/fetchItems';
 import { getCart } from '../../api/index';
 import { CurrentUser } from '../../context/currentUser';
-import CartList from '../../components/cartList/CartList';
-import OrderCart from '../../components/orderCart/OrderCart';
-import Button from '../../components/button/Button';
+import CartPage from '../../components/cart/CartPage';
 
 import { updateCartLine, deleteCartLine, orderCart } from '../../api/index';
-import { ValidationError, IProduct } from '../../api/types';
-
-// TODO:
-//  Finna leið til þess að rendera ekki fyrr en það er búið að tékka á körfu
-//  Skoða hvort það sé betri leið til að redirecta
-//  CSS
-interface ICartPageProps {
-  lines: IProduct[];
-  updateItem: Function;
-  deleteItem: Function;
-  orderCart: Function;
-  errors: ValidationError[];
-  total: number;
-}
-
-function CartPage(props: ICartPageProps) {
-  const { lines, updateItem, deleteItem, orderCart, errors, total } = props;
-  
-  return (
-    <Fragment>
-      {
-        lines.length !== 0
-          ? (
-            <Fragment>
-              <CartList updateItem={updateItem} deleteItem={deleteItem} cart={ lines } total={ total }/>
-              <OrderCart orderCart={orderCart} errors={errors}/>
-            </Fragment>
-          )
-          : (
-            <Fragment>
-              <h1 className={"cart__h1"}>Karfan er tóm</h1>
-              <Link to='/'><Button children={'Má bjóða þér að versla?'}/></Link>
-            </Fragment>
-          )
-      }
-    </Fragment>
-  );
-} 
+import Login from '../login/Login';
 
 export default function Cart() {
   const { token, authenticated } = useContext(CurrentUser);
@@ -71,6 +31,10 @@ export default function Cart() {
       setErrors(result.errors);
     }
     toggleUpdate(!updating);
+  }
+
+  if (!authenticated) {
+    return <Route component={Login} />
   }
 
   return (

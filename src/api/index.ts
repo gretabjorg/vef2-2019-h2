@@ -1,5 +1,3 @@
-import { IProduct, PagedQuery, RequestError } from './types';
-
 // Sækja slóð á API úr env
 const baseurl:string | undefined = process.env.REACT_APP_API_URL;
 
@@ -88,7 +86,7 @@ async function postRegister(username: String, password: String, email: String) {
     password,
     email
   }
-
+  console.log(user);
   const result = await fetch(url.href, {
     method: 'POST',
     headers: {

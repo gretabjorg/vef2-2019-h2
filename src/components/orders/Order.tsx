@@ -4,9 +4,8 @@ import { ICartLine } from '../../api/types';
 
 import './Orders.scss';
 
-function makeRows({ lines }:{ lines: ICartLine[] }) {
+function makeRows({ lines = [] }:{ lines: ICartLine[] }) {
   let index = 1;
-  
   return (
     lines.map((item: ICartLine) => (
       <tr className="orders__row" key={index++}>
@@ -47,7 +46,7 @@ function OrderInfo(
 export default function OrderPage({ items }:{items: any}) {
   const { total } = items;
   const itemTableRows = makeRows({lines: items.lines});
-  
+
   return (
     <>
       <div className="order_container">

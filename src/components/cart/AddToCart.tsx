@@ -26,7 +26,7 @@ export default function AddToCart(props: any) {
 
   return(
     <div className="cart__item__options__quantity">
-      <label>Fjöldi</label>
+      <label className="cart__item__options__label">Fjöldi</label>
       <Input value={quantity} setValue={setQuantity}></Input>
       <Button onClick={addToCart} small={true}>Bæta við körfu</Button>
       {add ? <p className={"cart__item__p"}>Bætt við körfu!</p> : null}

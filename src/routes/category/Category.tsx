@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 
 import Products from '../../components/products/Products';
-import Button from '../../components/button/Button';
 import Search from '../../components/search/Search';
+import Paging from '../../components/paging/Paging';
 import NotFound from '../system-pages/NotFound';
 
 
@@ -16,7 +16,6 @@ export default function CategoryRoute(props: any) {
   const [ page, setPage ] = useState(0);
   const [ search, setSearch ] = useState('');
   const [ query, submitSearch ] = useState(search);
-  const limit = 12;
   const { id } = props.match.params;
   const initialState = {
     limit: 0,
@@ -34,8 +33,9 @@ export default function CategoryRoute(props: any) {
       }
     }
   };
-
+  
   // Sækjum 13 vörur til þess að athuga hvort það sé ný síða
+  const limit = 12;
   const { items } = useGetter(
     getProducts, initialState, limit+1, page, id, query
   );
@@ -65,11 +65,7 @@ export default function CategoryRoute(props: any) {
     <h1>{ title }</h1>
       <Search searchString={search} setSearch={setSearch} submitSearch={handleSearch} />
       <Products items={items}/>
-      <div className="category__page">
-        { page ? <Button onClick={() => setPage(page - 12) } children={ "Fyrri síða" } small={true} /> : null }
-        { page === 0 ? null : <p className="category__page__number">{`Síða ${page / 12 + 1}`}</p> }
-        { hasNextPage ? <Button onClick={() => setPage(page + 12) } children={ "Næsta síða" } /> : null }
-      </div>
+      <Paging hasNextPage={hasNextPage} page={{page, setPage, limit}} />
     </div>
   );
 }

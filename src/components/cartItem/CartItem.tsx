@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
 import Input from '../input/Input';
 import Button from '../button/Button';
@@ -35,7 +35,7 @@ export default function CartItem(props: any) {
       </div>
       <div className="cart__item__options">
         <div className="cart__item__options__quantity">
-          <label>{'Fjöldi: '}</label>
+          <label className="cart__item__options__label">{'Fjöldi: '}</label>
           <Input value={ quantity } setValue={ setQuantity }/>
           <Button onClick={doUpdate} children="Uppfæra" small={true}/>
         </div>

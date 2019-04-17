@@ -3,14 +3,4 @@
 .category {
   display: flex;
   flex-direction: column;
-
-  &__page {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    &__number {
-      margin: $gutter;
-    }
-  }
 }

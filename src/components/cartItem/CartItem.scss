@@ -49,5 +49,9 @@
         margin: 0 $gutter/2;
       }
     }
+    &__label {
+      display: flex;
+      align-items: center;
+    }
   }
 }

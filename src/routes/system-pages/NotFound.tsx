@@ -1,8 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './SystemPages.scss';
-import { Link } from 'react-router-dom';
-import Button from '../../components/button/Button';
 
 export default function NotFound() {
   return (

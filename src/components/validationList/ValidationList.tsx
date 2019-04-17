@@ -1,9 +1,9 @@
 import React from 'react';
-import { ValidationError, RequestError } from '../../api/types';
+import { ValidationError } from '../../api/types';
 
 import './ValidationList.scss';
 
-export default function ValidationList({ validation, error }:{ validation: ValidationError[], error: RequestError }) {
+export default function ValidationList({ validation = [], error }:{ validation: ValidationError[], error?: { error: string } }) {
   let i = 1;
   const validationItems = validation.map((validation: any) => (
     <li key={i++}>{`${validation.field}, ${validation.error}`}</li>
