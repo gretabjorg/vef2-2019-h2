@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Route } from 'react-router-dom';
 
 import Products from '../../components/products/Products';
 import Button from '../../components/button/Button';
 import Search from '../../components/search/Search';
+import NotFound from '../system-pages/NotFound';
 
 
 import useGetter from '../../api/fetchItems';
@@ -38,7 +40,7 @@ export default function CategoryRoute(props: any) {
     getProducts, initialState, limit+1, page, id, query
   );
   
-  const { title } = useGetter(
+  const { id: categoryId, title } = useGetter(
     getCategories, {}, null, null, id
   );
   
@@ -52,6 +54,12 @@ export default function CategoryRoute(props: any) {
     submitSearch(search);
   }
   
+  if (categoryId === undefined) {
+    return (
+      <Route component={NotFound}/>
+    )
+  }
+
   return (
     <div className="category">
     <h1>{ title }</h1>

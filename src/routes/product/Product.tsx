@@ -1,4 +1,4 @@
-import { Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from 'react';
 import { Product as ProductComponent } from '../../components/product/Product';
 import Products from '../../components/products/Products';
@@ -8,6 +8,7 @@ import { getProduct, getProducts } from '../../api';
 import { CurrentUser } from '../../context/currentUser';
 
 import './Product.scss';
+import NotFound from '../system-pages/NotFound';
 
 export default function Product(props: any) {
   const { authenticated, token } = useContext(CurrentUser);
@@ -36,7 +37,7 @@ export default function Product(props: any) {
   return (
     <>
       {product.id === undefined ?
-        <Redirect to="/notFound"/>
+        <Route component={NotFound}/>
         :
         <>
           <ProductComponent {...product} auth={{authenticated, token}} add={{add,setAdd}} />

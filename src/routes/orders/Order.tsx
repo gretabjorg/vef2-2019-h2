@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
+import { Route } from 'react-router-dom';
 
 import OrderPage from '../../components/orders/Order';
+import NotFound from '../system-pages/NotFound';
+import Login from '../login/Login';
 
 import { CurrentUser } from '../../context/currentUser';
 import useGetter from '../../api/fetchItems';
@@ -23,17 +26,30 @@ function orderItems(props: any) {
 }
 
 export default function OrderRoute(props: any) {
-  const { token } = useContext(CurrentUser);
+  const { authenticated, token } = useContext(CurrentUser);
   const { id } = props.match.params;
-
-  const order = useGetter(getOrder, {}, token, id);
   
+  if(!authenticated) {
+    <Route component={Login}/>
+  }
+
+  const initialState = {
+    address: '',
+    created: '',
+    id: 0,
+    lines: [],
+    name: '',
+    total: 0,
+    updated: '',
+    user_id: 0,
+  }
+  const order = useGetter(getOrder, initialState, token, id);
+
+  if(order.id === undefined) {
+    <Route component={NotFound}/>
+  }
+
   return (
-    <>
-    { order.id
-      ? <OrderPage items={ order }/>
-      : null
-    }
-    </>
+    <OrderPage items={ order }/>
   );
 }
