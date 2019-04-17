@@ -86,7 +86,7 @@ async function postRegister(username: String, password: String, email: String) {
     password,
     email
   }
-  console.log(user);
+  
   const result = await fetch(url.href, {
     method: 'POST',
     headers: {
