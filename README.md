@@ -1,13 +1,14 @@
 # Hópverkefni 2
 
-* Verkefni keyrist á ....
-* Bakendinn keyrist á  ...
+* Verkefni keyrist á https://vef2-2019-h2.herokuapp.com
+* Bakendinn keyrist á  https://vef2-2019-hapi.herokuapp.com/
+Bakendinn er sýnilausnin á hópverkefni 1, nálgast má upplýsingar um hann hérna: https://github.com/vefforritun/vef2-2019-h1
 
 ## Uppsetning
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
 
 ## Notendur
