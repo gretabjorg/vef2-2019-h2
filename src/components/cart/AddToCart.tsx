@@ -1,9 +1,8 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { CurrentUser } from '../../context/currentUser';
 import Input from '../input/Input';
 import Button from '../button/Button';
-import { postToCart, getCart } from '../../api';
+import { postToCart } from '../../api/orders';
 
 import './Cart.scss';
 

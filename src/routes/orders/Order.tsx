@@ -7,7 +7,7 @@ import Login from '../login/Login';
 
 import { CurrentUser } from '../../context/currentUser';
 import useGetter from '../../api/fetchItems';
-import { getOrder } from '../../api';
+import { getOrder } from '../../api/orders';
 
 function orderItems(props: any) {
   const { lines = [] } = props;

@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { postLogin } from '../api/index';
+import { postLogin } from '../api/user';
 import { IUser, ICurrentUser } from '../api/types';
 
 const noUser: IUser = { id: 0, username: '', email: '', admin: false }

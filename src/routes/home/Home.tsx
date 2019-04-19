@@ -9,7 +9,7 @@ import Categories from '../../components/categories/Categories';
 import Button from '../../components/button/Button';
 
 import useGetter from '../../api/fetchItems';
-import { getProducts, getCategories } from '../../api/index';
+import { getProducts, getCategories } from '../../api/product';
 
 
 export default function Home() {

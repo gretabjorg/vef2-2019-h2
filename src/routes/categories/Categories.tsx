@@ -4,7 +4,7 @@ import Categories from '../../components/categories/Categories';
 import Paging from '../../components/paging/Paging';
 
 import useGetter from '../../api/fetchItems';
-import { getCategories } from '../../api/index';
+import { getCategories } from '../../api/product';
 
 import './Categories.scss';
 

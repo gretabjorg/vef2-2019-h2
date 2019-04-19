@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Product as ProductComponent } from '../../components/product/Product';
 import Products from '../../components/products/Products';
 import useGetter from '../../api/fetchItems';
-import { getProduct, getProducts } from '../../api';
+import { getProduct, getProducts } from '../../api/product';
 
 import { CurrentUser } from '../../context/currentUser';
 

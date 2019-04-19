@@ -1,103 +1,4 @@
-// Sækja slóð á API úr env
-const baseurl:string | undefined = process.env.REACT_APP_API_URL;
-
-function getPage(limit: number, offset: number) {
-  return `${
-    limit
-    ? offset 
-      ? `?limit=${limit}&offset=${offset}`
-      : `?limit=${limit}`
-    : offset
-      ? `?offset=${offset}`
-      : ''
-  }`;
-}
-
-async function getProduct(id: number | string) {
-  const path = `products/${id}`;
-
-  const url = new URL(path, baseurl);
-  const result = await fetch(url.href);
-  return result.json();
-}
-
-async function getProducts(
-  limit: number, offset: number, category: number, search: string
-) {
-  const page = getPage(limit, offset);
-  const isPage = `${page ? '&' : '?'}`
-  const query = `${
-    search 
-    ? category
-      ? `${isPage}search=${search}&category=${category}`
-      : `${isPage}search=${search}`
-    : category
-      ? `${isPage}category=${category}`
-      : ''
-  }`;
-
-  const path = `products/${page}${query}`;
-
-  const url = new URL(path, baseurl);
-  const result = await fetch(url.href);
-  return result.json();
-}
-
-async function getCategories(
-  limit: number, offset: number, category: number
-) {
-  const id = category ? `${category}` : '';
-  const page = getPage(limit, offset);
-
-  const path = `categories/${id}${page}`;
-
-  const url = new URL(path, baseurl);
-  const result = await fetch(url.href);
-  return result.json();
-}
-
-async function postLogin(username: string, password: string) {
-  const path = 'users/login';
-  const url = new URL(path, baseurl);
-
-  const user = {
-    username,
-    password
-  }
-
-  const result = await fetch(url.href, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': "application/json",
-    },
-    body:JSON.stringify(user),
-  });
-
-  return result.json();
-}
-
-async function postRegister(username: String, password: String, email: String) {
-  const path = 'users/register';
-  const url = new URL(path, baseurl);
-
-  const user = {
-    username,
-    password,
-    email
-  }
-  
-  const result = await fetch(url.href, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': "application/json",
-    },
-    body:JSON.stringify(user),
-  });
-
-  return result.json();
-}
+import { baseurl } from './apiUtils';
 
 async function getCart(token: string) {
   const url = new URL('cart', baseurl);
@@ -108,6 +9,7 @@ async function getCart(token: string) {
   });
   return result.json();  
 }
+
 
 async function getCartLine(token: string, id: number) {
   const url = new URL(`cart/line/${id}`, baseurl);
@@ -216,17 +118,12 @@ async function getOrder(token: string, id: number) {
 }
 
 export {
-  getProduct,
-  getProducts,
-  getCategories,
-  postRegister,
-  getCartLine,
   getCart,
-  postLogin,
+  getCartLine,
+  getOrder,
+  getOrders,
   updateCartLine,
   deleteCartLine,
   postToCart,
   orderCart,
-  getOrders,
-  getOrder,
-};
+}

@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react';
 import { Route } from 'react-router-dom';
 
 import useGetter from '../../api/fetchItems';
-import { getCart } from '../../api/index';
+import { getCart } from '../../api/orders';
 import { CurrentUser } from '../../context/currentUser';
 import CartPage from '../../components/cart/CartPage';
 
-import { updateCartLine, deleteCartLine, orderCart } from '../../api/index';
+import { updateCartLine, deleteCartLine, orderCart } from '../../api/orders';
 import Login from '../login/Login';
 
 export default function Cart() {

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import { CurrentUser } from '../../context/currentUser';
-import { postRegister } from '../../api';
+import { postRegister } from '../../api/user';
 
 import Home from '../../routes/home/Home';
 

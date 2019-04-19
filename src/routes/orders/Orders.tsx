@@ -7,7 +7,7 @@ import Login from '../login/Login';
 
 import { CurrentUser } from '../../context/currentUser';
 import useGetter from '../../api/fetchItems';
-import { getOrders } from '../../api';
+import { getOrders } from '../../api/orders';
 
 export default function Orders() {
   const { authenticated, token } = useContext(CurrentUser);

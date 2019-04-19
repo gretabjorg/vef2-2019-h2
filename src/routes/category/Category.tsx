@@ -8,7 +8,7 @@ import NotFound from '../system-pages/NotFound';
 
 
 import useGetter from '../../api/fetchItems';
-import { getProducts, getCategories } from '../../api/index';
+import { getProducts, getCategories } from '../../api/product';
 
 import './Category.scss';
 
