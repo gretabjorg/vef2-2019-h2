@@ -40,12 +40,17 @@ export default function CategoryRoute(props: any) {
     getProducts, initialState, limit+1, page, id, query
   );
   
+  const initialCat = {
+    id: 0,
+    title: '',
+  }
+
   const { id: categoryId, title } = useGetter(
-    getCategories, {}, null, null, id
+    getCategories, initialCat, null, null, id
   );
-  
+
   // Ný síða ef það eru fleiri vörur er passa
-  const hasNextPage = items.length > limit ? true : false;
+  const hasNextPage = items.length > limit || items.length === undefined ? true : false;
   if (items.length > limit) {
     items.pop();
   }

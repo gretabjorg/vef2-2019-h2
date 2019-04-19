@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 
 /**
  * Custom hook sem sér um að framkvæma api köll sem skila
@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
  */
 export default function useGetter(apiCall: Function, initialState: any, ...args:any[]) {
   const [ data, setData ] = useState(initialState);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchData = async () => {
       const result = await apiCall(...args);
       setData(result);
